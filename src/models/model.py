@@ -269,7 +269,7 @@ class Summarization:
             batch_size: int = 8,
             max_epochs: int = 5,
             use_gpu: bool = True,
-            outputdir: str = "model",
+            outputdir: str = "models",
             early_stopping_patience_epochs: int = 0,  # 0 to disable early stopping feature
     ):
         """
@@ -340,7 +340,7 @@ class Summarization:
         trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
-            self, model_dir: str = "model", use_gpu: bool = False
+            self, model_dir: str = "models", use_gpu: bool = False
     ):
         """
         loads a checkpoint for inferencing/prediction
@@ -364,7 +364,7 @@ class Summarization:
 
     def save_model(
             self,
-            model_dir="model"
+            model_dir="models"
     ):
         """
         Save model to dir
