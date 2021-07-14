@@ -302,16 +302,7 @@ class Summarization:
             tokenizer=self.tokenizer, model=self.model, output=outputdir
         )
 
-        # checkpoint_callback = ModelCheckpoint(
-        #     dirpath="checkpoints",
-        #     filename="best-checkpoint-{epoch}-{train_loss:.2f}",
-        #     save_top_k=-1,
-        #     verbose=True,
-        #     monitor="train_loss",
-        #     mode="min",
-        # )
-
-        logger = MLFlowLogger(experiment_name="Summarization")
+        logger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
         early_stop_callback = (
             [
