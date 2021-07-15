@@ -2,7 +2,7 @@ import time
 import torch
 import numpy as np
 import pandas as pd
-from datasets import load_metric
+from dagshub.pytorch_lightning import DAGsHubLogger
 from transformers import (
     AdamW,
     T5ForConditionalGeneration,
@@ -302,7 +302,9 @@ class Summarization:
             tokenizer=self.tokenizer, model=self.model, output=outputdir
         )
 
-        logger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+        #logger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+
+        logger = DAGsHubLogger()
 
         early_stop_callback = (
             [

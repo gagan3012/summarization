@@ -1,5 +1,5 @@
+from src.data.make_dataset import make_dataset
 from .model import Summarization
-from .make_dataset import make_dataset
 
 def predict_model(text):
     """
