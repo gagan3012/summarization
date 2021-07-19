@@ -1,5 +1,5 @@
-from .model import Summarization
-from data.make_dataset import make_dataset
+from src.models.model import Summarization
+from src.data.make_dataset import make_dataset
 
 def train_model():
     """

@@ -15,6 +15,7 @@ from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
 from pytorch_lightning import LightningModule
+from datasets import load_metric
 
 torch.cuda.empty_cache()
 pl.seed_everything(42)
@@ -302,7 +303,7 @@ class Summarization:
             tokenizer=self.tokenizer, model=self.model, output=outputdir
         )
 
-        #logger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+        # logger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
         logger = DAGsHubLogger()
 
@@ -425,4 +426,64 @@ class Summarization:
             )
             for g in generated_ids
         ]
-        return preds
+        return preds[0]
+
+    def evaluate(
+            self,
+            test_df: pd.DataFrame,
+            metrics: str = "rouge"
+    ):
+        metric = load_metric(metrics)
+        input_text = test_df['input_text']
+        references = test_df['output_text']
+        predictions = [self.predict(x) for x in input_text]
+
+        results = metric.compute(predictions=predictions, references=references)
+
+        output = {
+            'Rouge 1': {
+                'Rouge_1 Low Precision': results["rouge1"].low.precision,
+                'Rouge_1 Low recall': results["rouge1"].low.recall,
+                'Rouge_1 Low F1': results["rouge1"].low.fmeasure,
+                'Rouge_1 Mid Precision': results["rouge1"].mid.precision,
+                'Rouge_1 Mid recall': results["rouge1"].mid.recall,
+                'Rouge_1 Mid F1': results["rouge1"].mid.fmeasure,
+                'Rouge_1 High Precision': results["rouge1"].high.precision,
+                'Rouge_1 High recall': results["rouge1"].high.recall,
+                'Rouge_1 High F1': results["rouge1"].high.fmeasure,
+            },
+            'Rouge 2': {
+                'Rouge_2 Low Precision': results["rouge2"].low.precision,
+                'Rouge_2 Low recall': results["rouge2"].low.recall,
+                'Rouge_2 Low F1': results["rouge2"].low.fmeasure,
+                'Rouge_2 Mid Precision': results["rouge2"].mid.precision,
+                'Rouge_2 Mid recall': results["rouge2"].mid.recall,
+                'Rouge_2 Mid F1': results["rouge2"].mid.fmeasure,
+                'Rouge_2 High Precision': results["rouge2"].high.precision,
+                'Rouge_2 High recall': results["rouge2"].high.recall,
+                'Rouge_2 High F1': results["rouge2"].high.fmeasure,
+            },
+            'Rouge L':{
+                'Rouge_L Low Precision': results["rougeL"].low.precision,
+                'Rouge_L Low recall': results["rougeL"].low.recall,
+                'Rouge_L Low F1': results["rougeL"].low.fmeasure,
+                'Rouge_L Mid Precision': results["rougeL"].mid.precision,
+                'Rouge_L Mid recall': results["rougeL"].mid.recall,
+                'Rouge_L Mid F1': results["rougeL"].mid.fmeasure,
+                'Rouge_L High Precision': results["rougeL"].high.precision,
+                'Rouge_L High recall': results["rougeL"].high.recall,
+                'Rouge_L High F1': results["rougeL"].high.fmeasure,
+            },
+            'rougeLsum': {
+                'rougeLsum Low Precision': results["rougeLsum"].low.precision,
+                'rougeLsum Low recall': results["rougeLsum"].low.recall,
+                'rougeLsum Low F1': results["rougeLsum"].low.fmeasure,
+                'rougeLsum Mid Precision': results["rougeLsum"].mid.precision,
+                'rougeLsum Mid recall': results["rougeLsum"].mid.recall,
+                'rougeLsum Mid F1': results["rougeLsum"].mid.fmeasure,
+                'rougeLsum High Precision': results["rougeLsum"].high.precision,
+                'rougeLsum High recall': results["rougeLsum"].high.recall,
+                'rougeLsum High F1': results["rougeLsum"].high.fmeasure,
+            }
+        }
+        return output
