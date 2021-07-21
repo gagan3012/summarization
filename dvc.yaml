@@ -16,6 +16,9 @@ stages:
       - data/processed
       - models
       - src/models/evaluate_model.py
+    metrics:
+      - reports/metrics.txt:
+          cache: false
   process_data:
     cmd: python src/data/make_dataset.py
     deps:
