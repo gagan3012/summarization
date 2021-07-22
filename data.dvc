@@ -1,0 +1,5 @@
+outs:
+- md5: 4999a3b027d863c0194099c53d3217b0.dir
+  path: data/processed
+  size: 1359144999
+  nfiles: 3
