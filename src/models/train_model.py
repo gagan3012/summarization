@@ -1,13 +1,13 @@
 from src.models.model import Summarization
-from src.data.make_dataset import make_dataset
+import pandas as pd
 
 def train_model():
     """
     Train the model
     """
     # Load the data
-    train_df = make_dataset(split = 'train')
-    eval_df = make_dataset(split = 'val')
+    train_df = pd.load_csv('../../data/processed/train.csv')
+    eval_df = pd.load_csv('../../data/processed/validation.csv')
 
     model = Summarization()
     model.from_pretrained('t5-base')

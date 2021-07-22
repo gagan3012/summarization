@@ -1,13 +1,13 @@
 import dagshub
 
 from src.models.model import Summarization
-from src.data.make_dataset import make_dataset
+import pandas as pd
 
 def evaluate_model():
     """
     Evaluate model using rouge measure
     """
-    test_df = make_dataset(split='test')
+    test_df =  pd.load_csv('../../data/processed/test.csv')
     model = Summarization()
     model.load_model()
     results = model.evaluate(test_df=test_df)
