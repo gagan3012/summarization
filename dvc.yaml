@@ -2,7 +2,7 @@ stages:
   train:
     cmd: python src/models/train_model.py
     deps:
-      - data/processed
+      - data/processed/train.csv
       - src/models/train_model.py
     outs:
       - models:
@@ -13,7 +13,7 @@ stages:
   eval:
     cmd: python src/models/evaluate_model.py
     deps:
-      - data/processed
+      - data/processed/test.csv
       - models
       - src/models/evaluate_model.py
     metrics:
