@@ -303,9 +303,9 @@ class Summarization:
             tokenizer=self.tokenizer, model=self.model, output=outputdir
         )
 
-        # logger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+        MLlogger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
-        logger = DAGsHubLogger()
+        logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
 
         early_stop_callback = (
             [
@@ -324,7 +324,7 @@ class Summarization:
         gpus = 1 if use_gpu else 0
 
         trainer = Trainer(
-            logger=logger,
+            logger=[logger,MLlogger],
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,

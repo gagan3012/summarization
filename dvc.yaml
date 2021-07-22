@@ -22,7 +22,6 @@ stages:
   process_data:
     cmd: python src/data/make_dataset.py
     deps:
-      - data/raw
       - src/data/make_dataset.py
     outs:
       - data/processed:
