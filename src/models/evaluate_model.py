@@ -5,7 +5,7 @@ from src.data.make_dataset import make_dataset
 
 def evaluate_model():
     """
-    Evalute model using rouge measure
+    Evaluate model using rouge measure
     """
     test_df = make_dataset(split='test')
     model = Summarization()
