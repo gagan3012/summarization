@@ -22,8 +22,11 @@ stages:
   process_data:
     cmd: python src/data/make_dataset.py
     deps:
-      - data/processed
       - src/data/make_dataset.py
     outs:
-      - data/processed:
+      - data/processed/test.csv:
+          persist: true
+      - data/processed/train.csv:
+          persist: true
+      - data/processed/validation.csv:
           persist: true
