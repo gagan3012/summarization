@@ -303,7 +303,8 @@ class Summarization:
             tokenizer=self.tokenizer, model=self.model, output=outputdir
         )
 
-        MLlogger = MLFlowLogger(experiment_name="Summarization",tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+        MLlogger = MLFlowLogger(experiment_name="Summarization",
+                                tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
         logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
 
@@ -324,7 +325,7 @@ class Summarization:
         gpus = 1 if use_gpu else 0
 
         trainer = Trainer(
-            logger=[logger,MLlogger],
+            logger=[logger, MLlogger],
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,
@@ -463,7 +464,7 @@ class Summarization:
                 'Rouge_2 High recall': results["rouge2"].high.recall,
                 'Rouge_2 High F1': results["rouge2"].high.fmeasure,
             },
-            'Rouge L':{
+            'Rouge L': {
                 'Rouge_L Low Precision': results["rougeL"].low.precision,
                 'Rouge_L Low recall': results["rougeL"].low.recall,
                 'Rouge_L Low F1': results["rougeL"].low.fmeasure,
