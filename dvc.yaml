@@ -1,4 +1,22 @@
 stages:
+  create_data:
+    cmd:  src/data/make_dataset.py
+    deps:
+      - src/data/make_dataset.py
+    outs:
+      - data/raw:
+          persist: true
+  process_data:
+    cmd: python src/data/process_data.py
+    deps:
+      - src/data/process_data.py
+    outs:
+      - data/processed/test.csv:
+          persist: true
+      - data/processed/train.csv:
+          persist: true
+      - data/processed/validation.csv:
+          persist: true
   train:
     cmd: python src/models/train_model.py
     deps:
@@ -20,14 +38,4 @@ stages:
     metrics:
       - reports/metrics.txt:
           cache: false
-  process_data:
-    cmd: python src/data/make_dataset.py
-    deps:
-      - src/data/make_dataset.py
-    outs:
-      - data/processed/test.csv:
-          persist: true
-      - data/processed/train.csv:
-          persist: true
-      - data/processed/validation.csv:
-          persist: true
+
