@@ -4,7 +4,11 @@ stages:
     deps:
       - src/data/make_dataset.py
     outs:
-      - data/raw:
+      - data/raw/test.csv:
+          persist: true
+      - data/raw/train.csv:
+          persist: true
+      - data/raw/validation.csv:
           persist: true
   process_data:
     cmd: python src/data/process_data.py
