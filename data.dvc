@@ -1,7 +1,11 @@
 deps:
 - path: src/data/make_dataset.py
+  md5: 86916750d45ec67452008dbec0743962
+  size: 635
+cmd: python src/data/make_dataset.py
 outs:
 - md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
   nfiles: 3
   path: data/raw
   size: 1359144987
+md5: b6bd16daea6a68ea461e8660e6fd30f8
