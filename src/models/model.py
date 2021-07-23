@@ -161,8 +161,6 @@ class LightningModel(LightningModule):
         self.model = model
         self.tokenizer = tokenizer
         self.output = output
-        # self.val_acc = Accuracy()
-        # self.train_acc = Accuracy()
 
     def forward(self, input_ids, attention_mask, decoder_attention_mask, labels=None):
         """ forward step """
@@ -347,7 +345,7 @@ class Summarization:
         trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
-            self, model_dir: str = "../../models", use_gpu: bool = False
+            self, model_type:str ='t5' , model_dir: str = "../../models", use_gpu: bool = False
     ):
         """
         loads a checkpoint for inferencing/prediction
@@ -356,8 +354,21 @@ class Summarization:
             model_dir (str, optional): path to model directory. Defaults to "outputs".
             use_gpu (bool, optional): if True, model uses gpu for inferencing/prediction. Defaults to True.
         """
-        self.model = T5ForConditionalGeneration.from_pretrained(f"{model_dir}")
-        self.tokenizer = T5Tokenizer.from_pretrained(f"{model_dir}")
+        if model_type == "t5":
+            self.tokenizer = T5Tokenizer.from_pretrained(f"{model_dir}")
+            self.model = T5ForConditionalGeneration.from_pretrained(
+                f"{model_dir}", return_dict=True
+            )
+        elif model_type == "mt5":
+            self.tokenizer = MT5Tokenizer.from_pretrained(f"{model_dir}")
+            self.model = MT5ForConditionalGeneration.from_pretrained(
+                f"{model_dir}", return_dict=True
+            )
+        elif model_type == "byt5":
+            self.tokenizer = ByT5Tokenizer.from_pretrained(f"{model_dir}")
+            self.model = T5ForConditionalGeneration.from_pretrained(
+                f"{model_dir}", return_dict=True
+            )
 
         if use_gpu:
             if torch.cuda.is_available():
