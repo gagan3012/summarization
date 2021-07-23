@@ -6,7 +6,7 @@ from dagshub.pytorch_lightning import DAGsHubLogger
 from transformers import (
     AdamW,
     T5ForConditionalGeneration,
-    T5TokenizerFast as T5Tokenizer,
+    T5TokenizerFast as T5Tokenizer, MT5Tokenizer, MT5ForConditionalGeneration,ByT5Tokenizer,
 )
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
@@ -250,16 +250,28 @@ class Summarization:
         """ initiates Summarization class """
         pass
 
-    def from_pretrained(self, model_name="t5-base") -> None:
+    def from_pretrained(self,model_type = "t5", model_name="t5-base") -> None:
         """
         loads T5/MT5 Model model for training/finetuning
         Args:
             model_name (str, optional): exact model architecture name, "t5-base" or "t5-large". Defaults to "t5-base".
+            :param model_type:
         """
-        self.tokenizer = T5Tokenizer.from_pretrained(f"{model_name}")
-        self.model = T5ForConditionalGeneration.from_pretrained(
-            f"{model_name}", return_dict=True
-        )
+        if model_type == "t5":
+            self.tokenizer = T5Tokenizer.from_pretrained(f"{model_name}")
+            self.model = T5ForConditionalGeneration.from_pretrained(
+                f"{model_name}", return_dict=True
+            )
+        elif model_type == "mt5":
+            self.tokenizer = MT5Tokenizer.from_pretrained(f"{model_name}")
+            self.model = MT5ForConditionalGeneration.from_pretrained(
+                f"{model_name}", return_dict=True
+            )
+        elif model_type == "byt5":
+            self.tokenizer = ByT5Tokenizer.from_pretrained(f"{model_name}")
+            self.model = T5ForConditionalGeneration.from_pretrained(
+                f"{model_name}", return_dict=True
+            )
 
     def train(
             self,
