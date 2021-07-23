@@ -1,6 +1,6 @@
 stages:
   create_data:
-    cmd:  src/data/make_dataset.py
+    cmd: python src/data/make_dataset.py
     deps:
       - src/data/make_dataset.py
     outs:
