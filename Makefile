@@ -1,4 +1,4 @@
-.PHONY: clean dirs virtualenv lint requirements push pull reproduce
+.PHONY: clean dirs virtualenv lint requirements push pull run
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -44,9 +44,9 @@ push:
 pull:
 	dvc pull
 
-## Reproduce the DVC pipeline - recompute any modified outputs such as processed data or trained models
-reproduce:
-	dvc repro eval.dvc
+## run the DVC pipeline - recompute any modified outputs such as processed data or trained models
+run:
+	dvc repro dvc.yaml
 
 #################################################################################
 # PROJECT RULES                                                                 #
