@@ -1,6 +1,4 @@
-import time
 import torch
-import numpy as np
 import pandas as pd
 from dagshub.pytorch_lightning import DAGsHubLogger
 from transformers import (
@@ -319,7 +317,7 @@ class Summarization:
 
         self.T5Model = LightningModel(
             tokenizer=self.tokenizer, model=self.model, output=outputdir,
-            learning_rate=learning_rate,adam_epsilon=adam_epsilon
+            learning_rate=learning_rate, adam_epsilon=adam_epsilon
         )
 
         MLlogger = MLFlowLogger(experiment_name="Summarization",
