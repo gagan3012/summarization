@@ -2,6 +2,7 @@ stages:
   process_data:
     cmd: python src/data/process_data.py
     deps:
+      - params.yml
       - data/raw
       - src/data/process_data.py
     outs:
@@ -14,6 +15,7 @@ stages:
   train:
     cmd: python src/models/train_model.py
     deps:
+      - params.yml
       - data/processed/train.csv
       - data/processed/validation.csv
       - src/models/train_model.py
@@ -26,6 +28,7 @@ stages:
   eval:
     cmd: python src/models/evaluate_model.py
     deps:
+      - params.yml
       - data/processed/test.csv
       - models
       - src/models/evaluate_model.py
