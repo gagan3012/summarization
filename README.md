@@ -23,26 +23,20 @@ Project Organization
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── eval.dvc           <- The end of the data pipeline - evaluates the trained model on the test dataset.
-    │
     ├── models             <- Trained and serialized models, model predictions, or model summaries
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         the creator's initials, and a short `-` delimited description, e.g.
     │                         `1.0-jqp-initial-data-exploration`.
     │
-    ├── process_data.dvc   <- Process the raw data and prepare it for training.
-    ├── raw_data.dvc       <- Keeps the raw data versioned.
     │
     ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
     │   └── metrics.txt    <- Relevant metrics after evaluating the model.
     │   └── training_metrics.txt    <- Relevant metrics from training the model.
     │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
+    ├── requirements.txt   <- The requirements file for reproducing the analysis environment
     │
     ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
@@ -50,17 +44,19 @@ Project Organization
     │   │
     │   ├── data           <- Scripts to download or generate data
     │   │   └── make_dataset.py
+    │   │   └── process_data.py
     │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
+    │   ├── models         <- Scripts to train models 
     │   │   ├── predict_model.py
     │   │   └── train_model.py
+    │   │   └── evaluate_model.py
+    │   │   └── model.py
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
     │
     ├── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
-    └── train.dvc          <- Traing a model on the processed data.
+    └── data.dvc          <- Traing a model on the processed data.
 
 
 --------
