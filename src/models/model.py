@@ -6,7 +6,7 @@ from dagshub.pytorch_lightning import DAGsHubLogger
 from transformers import (
     AdamW,
     T5ForConditionalGeneration,
-    T5TokenizerFast as T5Tokenizer, MT5Tokenizer, MT5ForConditionalGeneration,ByT5Tokenizer,
+    T5TokenizerFast as T5Tokenizer, MT5Tokenizer, MT5ForConditionalGeneration, ByT5Tokenizer,
 )
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
@@ -248,7 +248,7 @@ class Summarization:
         """ initiates Summarization class """
         pass
 
-    def from_pretrained(self,model_type = "t5", model_name="t5-base") -> None:
+    def from_pretrained(self, model_type="t5", model_name="t5-base") -> None:
         """
         loads T5/MT5 Model model for training/finetuning
         Args:
@@ -345,7 +345,7 @@ class Summarization:
         trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
-            self, model_type:str ='t5' , model_dir: str = "../../models", use_gpu: bool = False
+            self, model_type: str = 't5', model_dir: str = "../../models", use_gpu: bool = False
     ):
         """
         loads a checkpoint for inferencing/prediction
