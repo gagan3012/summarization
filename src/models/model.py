@@ -94,7 +94,8 @@ class PLDataModule(LightningDataModule):
             source_max_token_len: int = 512,
             target_max_token_len: int = 512,
             batch_size: int = 4,
-            split: float = 0.1
+            split: float = 0.1,
+            num_workers: int = 2
     ):
         """
         :param data_df:
@@ -112,6 +113,7 @@ class PLDataModule(LightningDataModule):
         self.target_max_token_len = target_max_token_len
         self.source_max_token_len = source_max_token_len
         self.tokenizer = tokenizer
+        self.num_workers = num_workers
 
     def setup(self, stage=None):
         self.train_dataset = DataModule(
@@ -130,26 +132,26 @@ class PLDataModule(LightningDataModule):
     def train_dataloader(self):
         """ training dataloader """
         return DataLoader(
-            self.train_dataset, batch_size=self.batch_size, shuffle=True, num_workers=2
+            self.train_dataset, batch_size=self.batch_size, shuffle=True, num_workers=self.num_workers
         )
 
     def test_dataloader(self):
         """ test dataloader """
         return DataLoader(
-            self.test_dataset, batch_size=self.batch_size, shuffle=False, num_workers=2
+            self.test_dataset, batch_size=self.batch_size, shuffle=False, num_workers=self.num_workers
         )
 
     def val_dataloader(self):
         """ validation dataloader """
         return DataLoader(
-            self.test_dataset, batch_size=self.batch_size, shuffle=False, num_workers=2
+            self.test_dataset, batch_size=self.batch_size, shuffle=False, num_workers=self.num_workers
         )
 
 
 class LightningModel(LightningModule):
     """ PyTorch Lightning Model class"""
 
-    def __init__(self, tokenizer, model, output: str = "outputs"):
+    def __init__(self, tokenizer, model, learning_rate, adam_epsilon, output: str = "outputs"):
         """
         initiates a PyTorch Lightning Model
         Args:
@@ -236,7 +238,7 @@ class LightningModel(LightningModule):
                 "weight_decay": 0.0,
             },
         ]
-        optimizer = AdamW(optimizer_grouped_parameters, lr=self.hparams.learning_rate, eps=self.hparams.adam_epsilon)
+        optimizer = AdamW(optimizer_grouped_parameters, lr=self.learning_rate, eps=self.adam_epsilon)
         self.opt = optimizer
         return [optimizer]
 
@@ -282,6 +284,9 @@ class Summarization:
             use_gpu: bool = True,
             outputdir: str = "models",
             early_stopping_patience_epochs: int = 0,  # 0 to disable early stopping feature
+            learning_rate: float = 0.0001,
+            adam_epsilon: float = 0.01,
+            num_workers: int = 2
     ):
         """
         trains T5/MT5 model on custom dataset
@@ -298,6 +303,8 @@ class Summarization:
             early_stopping_patience_epochs (int, optional): monitors val_loss on epoch end and stops training,
             if val_loss does not improve after the specied number of epochs. set 0 to disable early stopping.
             Defaults to 0 (disabled)
+            :param learning_rate:
+            :param adam_epsilon:
         """
         self.target_max_token_len = target_max_token_len
         self.data_module = PLDataModule(
@@ -307,10 +314,12 @@ class Summarization:
             batch_size=batch_size,
             source_max_token_len=source_max_token_len,
             target_max_token_len=target_max_token_len,
+            num_workers=num_workers,
         )
 
         self.T5Model = LightningModel(
-            tokenizer=self.tokenizer, model=self.model, output=outputdir
+            tokenizer=self.tokenizer, model=self.model, output=outputdir,
+            learning_rate=learning_rate,adam_epsilon=adam_epsilon
         )
 
         MLlogger = MLFlowLogger(experiment_name="Summarization",

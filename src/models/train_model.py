@@ -1,3 +1,5 @@
+import yaml
+
 from src.models.model import Summarization
 import pandas as pd
 
@@ -6,14 +8,22 @@ def train_model():
     """
     Train the model
     """
+    with open("params.yml") as f:
+        params = yaml.safe_load(f)
+
     # Load the data
-    train_df = pd.read_csv('../../data/processed/train.csv')
-    eval_df = pd.read_csv('../../data/processed/validation.csv')
+    train_df = pd.read_csv('data/processed/train.csv')
+    eval_df = pd.read_csv('data/processed/validation.csv')
 
     model = Summarization()
-    model.from_pretrained('t5','t5-base')
-    model.train(train_df=train_df, eval_df=eval_df, batch_size=4, max_epochs=3, use_gpu=True)
-    model.save_model()
+    model.from_pretrained(model_type=params['model_type'], model_name=params['model_name'])
+
+    model.train(train_df=train_df, eval_df=eval_df,
+                batch_size=params['batch_size'], max_epochs=params['max_epoch'],
+                use_gpu=params['use_gpu'], learning_rate=params['learning_rate'],
+                num_workers=params['num_workers'])
+
+    model.save_model(model_dir=params['model_dir'])
 
 
 if __name__ == '__main__':
