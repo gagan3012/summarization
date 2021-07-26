@@ -2,6 +2,7 @@ import yaml
 from datasets import load_dataset
 import pandas as pd
 import os
+import pprint
 
 
 
@@ -19,7 +20,7 @@ def make_dataset(dataset='cnn_dailymail', split='train'):
 if __name__ == '__main__':
     with open("params.yml") as f:
         params = yaml.safe_load(f)
-    print(params)
+    pprint.pprint(params)
     make_dataset(dataset=params['data'], split='train')
     make_dataset(dataset=params['data'], split='test')
     make_dataset(dataset=params['data'], split='validation')
