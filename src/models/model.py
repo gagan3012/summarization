@@ -479,6 +479,7 @@ class Summarization:
         references = test_df['output_text'][:5]
 
         predictions = [self.predict(x) for x in input_text]
+        print(type(predictions),type(references))
 
         results = metric.compute(predictions=predictions, references=references)
         '''
