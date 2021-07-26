@@ -19,7 +19,7 @@ def make_dataset(dataset='cnn_dailymail', split='train'):
 if __name__ == '__main__':
     with open("params.yml") as f:
         params = yaml.safe_load(f)
-
+    print(params)
     make_dataset(dataset=params['data'], split='train')
     make_dataset(dataset=params['data'], split='test')
     make_dataset(dataset=params['data'], split='validation')
