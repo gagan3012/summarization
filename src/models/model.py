@@ -481,7 +481,7 @@ class Summarization:
         predictions = [self.predict(x) for x in input_text]
 
         results = metric.add_batch(predictions=predictions, references=references)
-
+        '''
         output = {
             'Rouge 1': {
                 'Rouge_1 Low Precision': results["rouge1"].low.precision,
@@ -528,4 +528,5 @@ class Summarization:
                 'rougeLsum High F1': results["rougeLsum"].high.fmeasure,
             }
         }
-        return output
+        '''
+        return results
