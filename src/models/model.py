@@ -333,7 +333,7 @@ class Summarization:
 
         WandLogger = WandbLogger(project="summarization-dagshub")
 
-        # logger = DAGsHubLogger(metrics_path='reports/training_metrics.txt')
+        # logger = DAGsHubLogger(metrics_path='reports/training_metrics.csv')
 
         early_stop_callback = (
             [
