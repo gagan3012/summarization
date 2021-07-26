@@ -13,6 +13,8 @@ from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
 from pytorch_lightning import LightningModule
 from datasets import load_metric
+from tqdm.auto import tqdm
+
 
 # from dagshub.pytorch_lightning import DAGsHubLogger
 
@@ -331,7 +333,10 @@ class Summarization:
 
         WandLogger = WandbLogger(project="summarization-dagshub")
 
-        # logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
+        # logger = DAGsHubLogger(metrics_path='reports/training_metrics.txt')
+
+        df = pd.read_json(r'wandb/latest-run/files/wandb-summary.json')
+        df.to_csv(r'reports/training_metrics.txt', index=False)
 
         early_stop_callback = (
             [
@@ -360,7 +365,7 @@ class Summarization:
         trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
-            self, model_type: str = 't5', model_dir: str = "../../models", use_gpu: bool = False
+            self, model_type: str = 't5', model_dir: str = "models", use_gpu: bool = False
     ):
         """
         loads a checkpoint for inferencing/prediction
