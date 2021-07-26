@@ -340,7 +340,7 @@ class Summarization:
             else None
         )
 
-        gpus = 1 if use_gpu else 0
+        gpus = -1 if use_gpu and torch.cuda.is_available() else 0
 
         trainer = Trainer(
             logger=[MLlogger],
