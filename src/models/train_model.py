@@ -23,8 +23,8 @@ def train_model():
 
     model.train(train_df=train_df, eval_df=eval_df,
                 batch_size=params['batch_size'], max_epochs=params['epochs'],
-                use_gpu=params['use_gpu'], learning_rate=params['learning_rate'],
-                num_workers=params['num_workers'])
+                use_gpu=params['use_gpu'], learning_rate=float(params['learning_rate']),
+                num_workers=int(params['num_workers']))
 
     model.save_model(model_dir=params['model_dir'])
 
