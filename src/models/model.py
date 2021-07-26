@@ -13,7 +13,8 @@ from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
 from pytorch_lightning import LightningModule
 from datasets import load_metric
-#from dagshub.pytorch_lightning import DAGsHubLogger
+
+# from dagshub.pytorch_lightning import DAGsHubLogger
 
 
 torch.cuda.empty_cache()
@@ -150,7 +151,7 @@ class PLDataModule(LightningDataModule):
 class LightningModel(LightningModule):
     """ PyTorch Lightning Model class"""
 
-    def __init__(self, tokenizer, model, learning_rate, adam_epsilon, output: str = "outputs"):
+    def __init__(self, tokenizer, model, learning_rate, adam_epsilon, weight_decay, output: str = "outputs"):
         """
         initiates a PyTorch Lightning Model
         Args:
@@ -162,6 +163,9 @@ class LightningModel(LightningModule):
         self.model = model
         self.tokenizer = tokenizer
         self.output = output
+        self.learning_rate = learning_rate
+        self.adam_epsilon = adam_epsilon
+        self.weight_decay = weight_decay
 
     def forward(self, input_ids, attention_mask, decoder_attention_mask, labels=None):
         """ forward step """
@@ -230,7 +234,7 @@ class LightningModel(LightningModule):
         optimizer_grouped_parameters = [
             {
                 "params": [p for n, p in model.named_parameters() if not any(nd in n for nd in no_decay)],
-                "weight_decay": self.hparams.weight_decay,
+                "weight_decay": self.weight_decay,
             },
             {
                 "params": [p for n, p in model.named_parameters() if any(nd in n for nd in no_decay)],
@@ -285,7 +289,8 @@ class Summarization:
             early_stopping_patience_epochs: int = 0,  # 0 to disable early stopping feature
             learning_rate: float = 0.0001,
             adam_epsilon: float = 0.01,
-            num_workers: int = 2
+            num_workers: int = 2,
+            weight_decay: float =0.0001
     ):
         """
         trains T5/MT5 model on custom dataset
@@ -318,13 +323,13 @@ class Summarization:
 
         self.T5Model = LightningModel(
             tokenizer=self.tokenizer, model=self.model, output=outputdir,
-            learning_rate=learning_rate, adam_epsilon=adam_epsilon
+            learning_rate=learning_rate, adam_epsilon=adam_epsilon,weight_decay=weight_decay
         )
 
         MLlogger = MLFlowLogger(experiment_name="Summarization",
                                 tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
-        #logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
+        # logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
 
         early_stop_callback = (
             [
