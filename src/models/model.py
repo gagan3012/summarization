@@ -1,6 +1,5 @@
 import torch
 import pandas as pd
-from dagshub.pytorch_lightning import DAGsHubLogger
 from transformers import (
     AdamW,
     T5ForConditionalGeneration,
@@ -14,6 +13,8 @@ from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
 from pytorch_lightning import LightningModule
 from datasets import load_metric
+from dagshub.pytorch_lightning import DAGsHubLogger
+
 
 torch.cuda.empty_cache()
 pl.seed_everything(42)
