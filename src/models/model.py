@@ -7,7 +7,7 @@ from transformers import (
 )
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
-from pytorch_lightning.loggers import MLFlowLogger
+from pytorch_lightning.loggers import MLFlowLogger, WandbLogger
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
@@ -290,7 +290,7 @@ class Summarization:
             learning_rate: float = 0.0001,
             adam_epsilon: float = 0.01,
             num_workers: int = 2,
-            weight_decay: float =0.0001
+            weight_decay: float = 0.0001
     ):
         """
         trains T5/MT5 model on custom dataset
@@ -323,11 +323,13 @@ class Summarization:
 
         self.T5Model = LightningModel(
             tokenizer=self.tokenizer, model=self.model, output=outputdir,
-            learning_rate=learning_rate, adam_epsilon=adam_epsilon,weight_decay=weight_decay
+            learning_rate=learning_rate, adam_epsilon=adam_epsilon, weight_decay=weight_decay
         )
 
-        MLlogger = MLFlowLogger(experiment_name="Summarization",
-                                tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+        # MLlogger = MLFlowLogger(experiment_name="Summarization",
+        #                        tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")\
+
+        WandLogger = WandbLogger(project="keytotext")
 
         # logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
 
@@ -348,7 +350,7 @@ class Summarization:
         gpus = -1 if use_gpu and torch.cuda.is_available() else 0
 
         trainer = Trainer(
-            logger=[MLlogger],
+            logger=[WandLogger],
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,
