@@ -9,6 +9,7 @@ rouge_score
 pyyaml
 dvc
 mlflow
+wandb
 
 # external requirements
 click
