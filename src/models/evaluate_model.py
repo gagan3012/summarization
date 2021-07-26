@@ -1,7 +1,7 @@
 import dagshub
 import yaml
 
-from .model import Summarization
+from model import Summarization
 import pandas as pd
 
 
