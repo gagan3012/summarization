@@ -28,6 +28,9 @@ def train_model():
 
     model.save_model(model_dir=params['model_dir'])
 
+    df = pd.read_json(r'wandb/latest-run/files/wandb-summary.json')
+    df.to_csv(r'reports/training_metrics.txt', index=False)
+
 
 if __name__ == '__main__':
     train_model()

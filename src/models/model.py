@@ -361,9 +361,6 @@ class Summarization:
 
         trainer.fit(self.T5Model, self.data_module)
 
-        df = pd.read_json(r'wandb/latest-run/files/wandb-summary.json')
-        df.to_csv(r'reports/training_metrics.txt', index=False)
-
     def load_model(
             self, model_type: str = 't5', model_dir: str = "models", use_gpu: bool = False
     ):
