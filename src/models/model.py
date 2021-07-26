@@ -329,7 +329,7 @@ class Summarization:
         # MLlogger = MLFlowLogger(experiment_name="Summarization",
         #                        tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")\
 
-        WandLogger = WandbLogger(project="keytotext")
+        WandLogger = WandbLogger(project="summarization-dagshub")
 
         # logger = DAGsHubLogger(metrics_path='reports/metrics.txt')
 
