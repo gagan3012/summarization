@@ -3,6 +3,7 @@ import yaml
 
 from model import Summarization
 import pandas as pd
+import json
 
 
 def evaluate_model():
@@ -17,6 +18,9 @@ def evaluate_model():
     model.load_model(model_type=params['model_type'], model_dir=params['model_dir'])
     results = model.evaluate(test_df=test_df, metrics=params['metric'])
 
-    with dagshub.dagshub_logger() as logger:
-        logger.log_metrics(results)
-    return results
+    with open('reports/metrics.txt', 'w') as fp:
+        json.dump(results, fp)
+
+
+if __name__ == '__main__':
+    evaluate_model()
