@@ -467,7 +467,7 @@ class Summarization:
             )
             for g in generated_ids
         ]
-        return preds[0]
+        return preds
 
     def evaluate(
             self,
@@ -477,9 +477,9 @@ class Summarization:
         metric = load_metric(metrics)
         input_text = test_df['input_text']
         references = test_df['output_text']
-        predictions = [self.predict(x) for x in input_text]
 
-        results = metric.compute(predictions=predictions, references=references)
+        for x in input_text:
+            results = metric.add_batch(predictions=self.predict(x), references=references)
 
         output = {
             'Rouge 1': {
