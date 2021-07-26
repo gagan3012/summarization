@@ -480,7 +480,7 @@ class Summarization:
 
         predictions = [self.predict(x) for x in input_text]
 
-        results = metric.add_batch(predictions=predictions, references=references)
+        results = metric.compute(predictions=predictions, references=references)
         '''
         output = {
             'Rouge 1': {
