@@ -458,15 +458,12 @@ class Summarization:
             top_k=top_k,
             num_return_sequences=num_return_sequences,
         )
-        preds = [
-            self.tokenizer.decode(
-                g,
+        preds = self.tokenizer.decode(
+                generated_ids[0],
                 skip_special_tokens=skip_special_tokens,
                 clean_up_tokenization_spaces=clean_up_tokenization_spaces,
             )
-            for g in generated_ids
-        ]
-        return preds[0]
+        return preds
 
     def evaluate(
             self,
