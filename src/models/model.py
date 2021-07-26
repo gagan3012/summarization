@@ -474,12 +474,11 @@ class Summarization:
             metrics: str = "rouge"
     ):
         metric = load_metric(metrics)
-        input_text = test_df['input_text'][:5]
-        references = test_df['output_text'][:5]
+        input_text = test_df['input_text']
+        references = test_df['output_text']
         references = references.to_list()
 
         predictions = [self.predict(x) for x in input_text]
-        print(type(predictions), type(references))
 
         results = metric.compute(predictions=predictions, references=references)
 
