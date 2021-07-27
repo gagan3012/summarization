@@ -1,14 +1,14 @@
 deps:
 - path: params.yml
-  md5: 1c81ba3474bff51c4e36e59af83ba4eb
-  size: 188
+  md5: 40a4e5557f78126afbd7800f61ef1d11
+  size: 189
 - path: src/data/make_dataset.py
   md5: 9de71de0f8df5d0a7beb235ef7c7777d
   size: 772
 cmd: python src/data/make_dataset.py
 outs:
-- md5: d751713988987e9331980363e24189ce.dir
-  nfiles: 0
+- md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
+  nfiles: 3
   path: data/raw
-  size: 0
-md5: 93aa72cba714454669e300543686901e
+  size: 1358833013
+md5: 62b3e4497b565a311300b2adbba6f479
