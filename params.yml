@@ -4,9 +4,9 @@ num_workers: 2
 model_type: t5
 model_name: t5-small
 learning_rate: 1e-4
-epochs: 10
+epochs: 3
 source_dir: src
-model_dir: models
+model_dir: models/models
 metric: rouge
 split: 0.05
 use_gpu: True
