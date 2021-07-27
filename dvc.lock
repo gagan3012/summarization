@@ -1,34 +1,68 @@
-train:
-  cmd: python src/models/train_model.py
-  deps:
-  - path: data/processed
-    md5: d751713988987e9331980363e24189ce.dir
-  - path: src/models/train_model.py
-    md5: d41d8cd98f00b204e9800998ecf8427e
-  outs:
-  - path: models
-    md5: d751713988987e9331980363e24189ce.dir
-  - path: reports/training_metrics.txt
-    md5: d41d8cd98f00b204e9800998ecf8427e
-eval:
-  cmd: python src/models/predict_model.py
-  deps:
-  - path: data/processed
-    md5: d751713988987e9331980363e24189ce.dir
-  - path: models
-    md5: d751713988987e9331980363e24189ce.dir
-  - path: src/models/predict_model.py
-    md5: d41d8cd98f00b204e9800998ecf8427e
-  outs:
-  - path: reports/metrics.txt
-    md5: d41d8cd98f00b204e9800998ecf8427e
-process_data:
-  cmd: python src/data/make_dataset.py
-  deps:
-  - path: data/raw
-    md5: d751713988987e9331980363e24189ce.dir
-  - path: src/data/make_dataset.py
-    md5: d41d8cd98f00b204e9800998ecf8427e
-  outs:
-  - path: data/processed
-    md5: d751713988987e9331980363e24189ce.dir
+schema: '2.0'
+stages:
+  train:
+    cmd: python src/models/train_model.py
+    deps:
+    - path: data/processed/train.csv
+      md5: 707c5ed455a15ec48965daf92fed7df6
+      size: 12653913
+    - path: data/processed/validation.csv
+      md5: 1e021dc163cc87a32cef74a98e4a0d51
+      size: 558403
+    - path: params.yml
+      md5: 1c81ba3474bff51c4e36e59af83ba4eb
+      size: 188
+    - path: src/models/train_model.py
+      md5: fca8acf70f09cecd679ca1ddb2eef6a9
+      size: 1198
+    outs:
+    - path: models
+      md5: 889c9e429c8c0d7aeb66c6204c983645.dir
+      size: 243476333
+      nfiles: 5
+    - path: reports/training_metrics.txt
+      md5: 35f2808d4380b428f3de8f4c6b2c119e
+      size: 124
+  eval:
+    cmd: python src/models/evaluate_model.py
+    deps:
+    - path: data/processed/test.csv
+      md5: 5f2bfb37d55a13ead3c81564dbee2fd5
+      size: 508508
+    - path: models
+      md5: 889c9e429c8c0d7aeb66c6204c983645.dir
+      size: 243476333
+      nfiles: 5
+    - path: params.yml
+      md5: 1c81ba3474bff51c4e36e59af83ba4eb
+      size: 188
+    - path: src/models/evaluate_model.py
+      md5: aa01b1564d737fef54ae45d25c5018d1
+      size: 615
+    outs:
+    - path: reports/metrics.txt
+      md5: d9557204b6599a6b0db7d5f1ea80559d
+      size: 1604
+  process_data:
+    cmd: python src/data/process_data.py
+    deps:
+    - path: data/raw
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: params.yml
+      md5: 1c81ba3474bff51c4e36e59af83ba4eb
+      size: 188
+    - path: src/data/process_data.py
+      md5: ba3ba7b7c8a905b736b6b0a28d2334c4
+      size: 623
+    outs:
+    - path: data/processed/test.csv
+      md5: 5f2bfb37d55a13ead3c81564dbee2fd5
+      size: 508508
+    - path: data/processed/train.csv
+      md5: 707c5ed455a15ec48965daf92fed7df6
+      size: 12653913
+    - path: data/processed/validation.csv
+      md5: 1e021dc163cc87a32cef74a98e4a0d51
+      size: 558403
