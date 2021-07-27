@@ -7,8 +7,8 @@ deps:
   size: 772
 cmd: python src/data/make_dataset.py
 outs:
-- md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
-  nfiles: 3
+- md5: d751713988987e9331980363e24189ce.dir
+  nfiles: 0
   path: data/raw
-  size: 1358833013
-md5: b05258b58c0d3a956cce15dfa3fe2e28
+  size: 0
+md5: 93aa72cba714454669e300543686901e
