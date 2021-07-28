@@ -327,8 +327,8 @@ class Summarization:
             learning_rate=learning_rate, adam_epsilon=adam_epsilon, weight_decay=weight_decay
         )
 
-        # MLlogger = MLFlowLogger(experiment_name="Summarization",
-         #                       tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
+        MLlogger = MLFlowLogger(experiment_name="Summarization",
+                                tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
         WandLogger = WandbLogger(project="summarization-dagshub")
 
@@ -351,7 +351,7 @@ class Summarization:
         gpus = -1 if use_gpu and torch.cuda.is_available() else 0
 
         trainer = Trainer(
-            logger=WandLogger,
+            logger=[WandLogger, MLlogger],
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,
