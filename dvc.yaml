@@ -38,4 +38,10 @@ stages:
     metrics:
       - reports/metrics.txt:
           cache: false
+  visualize:
+    cmd: streamlit run src/visualization/visualize.py
+    deps:
+      - models
+      - src/visualization/visualize.py
+      - src/models/predict_model.py
 
