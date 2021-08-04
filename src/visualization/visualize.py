@@ -13,9 +13,12 @@ def visualize():
     text = st.text_area("Enter text here")
     if st.button("Generate Summary"):
         with st.spinner("Connecting the Dots..."):
-            text = predict_model(text=text)
+            sumtext = predict_model(text=text)
         st.write("# Generated Summary:")
-        st.write("{}".format(text))
+        st.write("{}".format(sumtext))
+        with open("reports/visualization_metrics.txt", "w") as file1:
+            file1.writelines(text)
+            file1.writelines(sumtext)
 
 
 if __name__ == "__main__":

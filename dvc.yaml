@@ -36,11 +36,14 @@ stages:
       - models
       - src/models/evaluate_model.py
     metrics:
-      - reports/metrics.txt:
+      - reports/evaluation_metrics.txt:
           cache: false
   visualize:
     cmd: streamlit run src/visualization/visualize.py
     deps:
       - models
       - src/visualization/visualize.py
+    metrics:
+      - reports/visualization_metrics.txt:
+          cache: false
 
