@@ -1,4 +1,4 @@
-import dagshub
+from dagshub import dagshub_logger
 import yaml
 
 from model import Summarization
@@ -18,8 +18,8 @@ def evaluate_model():
     model.load_model(model_type=params['model_type'], model_dir=params['model_dir'])
     results = model.evaluate(test_df=test_df, metrics=params['metric'])
 
-    with open('reports/metrics.txt', 'w') as fp:
-        json.dump(results, fp)
+    with dagshub_logger(should_log_hparams=False) as logger:
+        logger.log_metrics(results)
 
 
 if __name__ == '__main__':

@@ -93,6 +93,5 @@ coverage.xml
 .vscode
 /data
 
-wandb/
 summarization-dagshub/
 /models

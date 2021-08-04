@@ -7,15 +7,14 @@ from transformers import (
 )
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
-from pytorch_lightning.loggers import MLFlowLogger, WandbLogger
+from pytorch_lightning.loggers import MLFlowLogger
+from dagshub.pytorch_lightning import DAGsHubLogger
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
 from pytorch_lightning import LightningModule
 from datasets import load_metric
 from tqdm.auto import tqdm
-
-# from dagshub.pytorch_lightning import DAGsHubLogger
 
 
 torch.cuda.empty_cache()
@@ -330,9 +329,8 @@ class Summarization:
         MLlogger = MLFlowLogger(experiment_name="Summarization",
                                 tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
 
-        WandLogger = WandbLogger(project="summarization-dagshub")
-
-        # logger = DAGsHubLogger(metrics_path='reports/training_metrics.txt')
+        logger = DAGsHubLogger(metrics_path='reports/training_metrics.csv',
+                               hparams_path='reports/training_params.yml')
 
         early_stop_callback = (
             [
@@ -351,7 +349,7 @@ class Summarization:
         gpus = -1 if use_gpu and torch.cuda.is_available() else 0
 
         trainer = Trainer(
-            logger=[WandLogger, MLlogger],
+            logger=[MLlogger, logger],
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,

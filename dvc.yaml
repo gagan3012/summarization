@@ -1,4 +1,11 @@
 stages:
+  download_data:
+    cmd: python src/data/make_dataset.py
+    deps:
+      - params.yml
+      - src/data/make_dataset.py
+    outs:
+      - data/raw
   process_data:
     cmd: python src/data/process_data.py
     deps:
@@ -25,8 +32,10 @@ stages:
     outs:
       - models:
           persist: true
+      - reports/training_params.yml:
+          cache: false
     metrics:
-      - reports/training_metrics.txt:
+      - reports/training_metrics.csv:
           cache: false
   eval:
     cmd: python src/models/evaluate_model.py
@@ -36,6 +45,6 @@ stages:
       - models
       - src/models/evaluate_model.py
     metrics:
-      - reports/metrics.txt:
+      - reports/metrics.csv:
           cache: false
 
