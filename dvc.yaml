@@ -42,6 +42,5 @@ stages:
     cmd: streamlit run src/visualization/visualize.py
     deps:
       - models
-      - params.yml
       - src/visualization/visualize.py
 
