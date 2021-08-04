@@ -44,5 +44,4 @@ stages:
       - models
       - params.yml
       - src/visualization/visualize.py
-      - src/models/predict_model.py
 
