@@ -1,5 +1,5 @@
 import streamlit as st
-from src.models.predict_model import predict_model
+from models import predict_model
 
 
 def visualize():
