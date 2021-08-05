@@ -54,30 +54,30 @@ stages:
       size: 1358833013
       nfiles: 3
     - path: params.yml
-      md5: 200ce3c4d9f2e8b9eb040ef93eb22757
-      size: 189
+      md5: 160cbfd0ed8f87c9c5cb28fbeef1072d
+      size: 266
     - path: src/data/process_data.py
-      md5: 7633b8978c523858d18b1ce9a5d3c8b7
+      md5: 5b6aaadc5a628979956d502b4fb4ebf2
       size: 516
     outs:
     - path: data/processed/test.csv
-      md5: 3cb7b63891f12d53b3ef3e81a2e93f8e
-      size: 986944
+      md5: 5f2bfb37d55a13ead3c81564dbee2fd5
+      size: 508508
     - path: data/processed/train.csv
-      md5: 51edd724b75a8e99a78b9138f8f37c60
-      size: 25012573
+      md5: 707c5ed455a15ec48965daf92fed7df6
+      size: 12653913
     - path: data/processed/validation.csv
-      md5: 0900e2bb330df94cb045faddd0b945d1
-      size: 1138285
+      md5: 1e021dc163cc87a32cef74a98e4a0d51
+      size: 558403
   download_data:
     cmd: python src/data/make_dataset.py
     deps:
     - path: params.yml
-      md5: 200ce3c4d9f2e8b9eb040ef93eb22757
-      size: 189
+      md5: 160cbfd0ed8f87c9c5cb28fbeef1072d
+      size: 266
     - path: src/data/make_dataset.py
-      md5: 9de71de0f8df5d0a7beb235ef7c7777d
-      size: 772
+      md5: 075c6233f8732eedf7915732f9a8ebfd
+      size: 771
     outs:
     - path: data/raw
       md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir

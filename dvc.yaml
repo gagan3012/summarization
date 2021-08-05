@@ -2,14 +2,14 @@ stages:
   download_data:
     cmd: python src/data/make_dataset.py
     deps:
-      - params.yml
+      - data_params.yml
       - src/data/make_dataset.py
     outs:
       - data/raw
   process_data:
     cmd: python src/data/process_data.py
     deps:
-      - params.yml
+      - data_params.yml
       - data/raw
       - src/data/process_data.py
     outs:
@@ -25,7 +25,7 @@ stages:
   train:
     cmd: python src/models/train_model.py
     deps:
-      - params.yml
+      - model_params.yml
       - data/processed/train.csv
       - data/processed/validation.csv
       - src/models/train_model.py
@@ -38,7 +38,7 @@ stages:
   eval:
     cmd: python src/models/evaluate_model.py
     deps:
-      - params.yml
+      - model_params.yml
       - data/processed/test.csv
       - models
       - src/models/evaluate_model.py
@@ -50,8 +50,13 @@ stages:
     deps:
       - models
       - src/visualization/visualize.py
-      - params.yml
     metrics:
-      - reports/visualization_metrics.csv:
+      - reports/visualization_metrics.txt:
           cache: false
+  push_to_hf_hub:
+    cmd: python src/models/hf_upload.py
+    deps:
+      - model_params.yml
+      - src/models/hf_upload.py
+      - models
 

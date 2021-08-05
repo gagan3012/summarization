@@ -5,7 +5,7 @@ import os
 
 def process_data(split="train"):
 
-    with open("params.yml") as f:
+    with open("data_params.yml") as f:
         params = yaml.safe_load(f)
 
     df = pd.read_csv("data/raw/{}.csv".format(split))

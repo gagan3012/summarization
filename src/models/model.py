@@ -1,10 +1,7 @@
-import shutil
-from getpass import getpass
-from pathlib import Path
+
 
 import torch
 import pandas as pd
-from huggingface_hub import HfApi, Repository
 from transformers import (
     AdamW,
     T5ForConditionalGeneration,
@@ -550,31 +547,3 @@ class Summarization:
             "rougeLsum High F1": results["rougeLsum"].high.fmeasure,
         }
         return output
-
-    def upload(self, hf_username, model_name):
-        hf_password = getpass("Enter your HuggingFace password")
-        if Path("./models").exists():
-            shutil.rmtree("./models")
-        token = HfApi().login(username=hf_username, password=hf_password)
-        del hf_password
-        model_url = HfApi().create_repo(token=token, name=model_name, exist_ok=True)
-        model_repo = Repository(
-            "./model",
-            clone_from=model_url,
-            use_auth_token=token,
-            git_email=f"{hf_username}@users.noreply.huggingface.co",
-            git_user=hf_username,
-        )
-
-        readme_txt = f"""
-            ---
-            Summarisation model {model_name}
-            """.strip()
-
-        (Path(model_repo.local_dir) / "README.md").write_text(readme_txt)
-        self.save_model()
-        commit_url = model_repo.push_to_hub()
-
-        print("Check out your model at:")
-        print(commit_url)
-        print(f"https://huggingface.co/{hf_username}/{model_name}")

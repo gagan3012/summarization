@@ -8,7 +8,7 @@ def predict_model(text):
     """
     Predict the summary of the given text.
     """
-    with open("params.yml") as f:
+    with open("model_params.yml") as f:
         params = yaml.safe_load(f)
 
     model = Summarization()

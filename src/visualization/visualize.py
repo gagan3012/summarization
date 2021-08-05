@@ -1,7 +1,6 @@
 import streamlit as st
-import yaml
 
-from models import predict_model
+from ..models import predict_model
 
 
 def visualize():
@@ -25,8 +24,4 @@ def visualize():
 
 
 if __name__ == "__main__":
-    with open("params.yml") as f:
-        params = yaml.safe_load(f)
-
-    if params["visualise"]:
-        visualize()
+    visualize()
