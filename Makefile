@@ -35,6 +35,7 @@ clean:
 ## Lint using flake8
 lint:
 	flake8 src
+	black src
 
 ## Upload Data to default DVC remote
 push:

@@ -32,8 +32,6 @@ stages:
     outs:
       - models:
           persist: true
-      - reports/training_params.yml:
-          cache: false
     metrics:
       - reports/training_metrics.csv:
           cache: false
@@ -45,6 +43,15 @@ stages:
       - models
       - src/models/evaluate_model.py
     metrics:
-      - reports/metrics.csv:
+      - reports/evaluation_metrics.csv:
+          cache: false
+  visualize:
+    cmd: streamlit run src/visualization/visualize.py
+    deps:
+      - models
+      - src/visualization/visualize.py
+      - params.yml
+    metrics:
+      - reports/visualization_metrics.csv:
           cache: false
 
