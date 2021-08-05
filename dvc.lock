@@ -4,48 +4,45 @@ stages:
     cmd: python src/models/train_model.py
     deps:
     - path: data/processed/train.csv
-      md5: 51edd724b75a8e99a78b9138f8f37c60
-      size: 25012573
+      md5: 5331b9c32b2d097d8d7aca01de5524bc
+      size: 1198262
     - path: data/processed/validation.csv
-      md5: 0900e2bb330df94cb045faddd0b945d1
-      size: 1138285
-    - path: params.yml
-      md5: 200ce3c4d9f2e8b9eb040ef93eb22757
-      size: 189
+      md5: 6069153a075b00dfb6d9e0843dd2da89
+      size: 52739
+    - path: model_params.yml
+      md5: 9fcf006ee30f2b751078598a3fba9bb5
+      size: 235
     - path: src/models/train_model.py
-      md5: d57b5ff84bc29a8ea75e191027d70148
-      size: 988
+      md5: f7d1121426c3d5530c2b9697cb7ac74a
+      size: 951
     outs:
     - path: models
-      md5: ff6de43e1d1f4d7c3d0bb3b551c1085f.dir
-      size: 486952666
-      nfiles: 10
+      md5: fc37870a93db61b94af9f0847577f09b.dir
+      size: 243476333
+      nfiles: 5
     - path: reports/training_metrics.csv
-      md5: 62f71f6ba5390e07bc70e90ac3f1f0e8
-      size: 727
-    - path: reports/training_params.yml
-      md5: 075736962fab2a5e5b3ff189c13e101b
-      size: 16
+      md5: 0b6c1518aed802bea976e883caac2a90
+      size: 320
   eval:
     cmd: python src/models/evaluate_model.py
     deps:
     - path: data/processed/test.csv
-      md5: 3cb7b63891f12d53b3ef3e81a2e93f8e
-      size: 986944
+      md5: 3eec94ac211c76363a3d968663b82d02
+      size: 39574
+    - path: model_params.yml
+      md5: 9fcf006ee30f2b751078598a3fba9bb5
+      size: 235
     - path: models
-      md5: ff6de43e1d1f4d7c3d0bb3b551c1085f.dir
-      size: 486952666
-      nfiles: 10
-    - path: params.yml
-      md5: 200ce3c4d9f2e8b9eb040ef93eb22757
-      size: 189
+      md5: fc37870a93db61b94af9f0847577f09b.dir
+      size: 243476333
+      nfiles: 5
     - path: src/models/evaluate_model.py
-      md5: 55d3aac9c8f024f7d2eb8ad5e0ae87ae
-      size: 688
+      md5: 89edb77aaab3055605ae6db2e21eab82
+      size: 705
     outs:
-    - path: reports/metrics.csv
-      md5: e618e8c26e0def4e33abcad08ac35ac9
-      size: 1690
+    - path: reports/evaluation_metrics.csv
+      md5: a5fa12e6df10884217614c007d146a26
+      size: 2122
   process_data:
     cmd: python src/data/process_data.py
     deps:
@@ -53,33 +50,47 @@ stages:
       md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
       size: 1358833013
       nfiles: 3
-    - path: params.yml
-      md5: 160cbfd0ed8f87c9c5cb28fbeef1072d
-      size: 266
+    - path: data_params.yml
+      md5: a68eabf79c3b3e28afb05baa1944bbc7
+      size: 32
     - path: src/data/process_data.py
-      md5: 5b6aaadc5a628979956d502b4fb4ebf2
-      size: 516
+      md5: 68db554a69a0c8ce807907afa2be5e9c
+      size: 521
     outs:
     - path: data/processed/test.csv
-      md5: 5f2bfb37d55a13ead3c81564dbee2fd5
-      size: 508508
+      md5: 3eec94ac211c76363a3d968663b82d02
+      size: 39574
     - path: data/processed/train.csv
-      md5: 707c5ed455a15ec48965daf92fed7df6
-      size: 12653913
+      md5: 5331b9c32b2d097d8d7aca01de5524bc
+      size: 1198262
     - path: data/processed/validation.csv
-      md5: 1e021dc163cc87a32cef74a98e4a0d51
-      size: 558403
+      md5: 6069153a075b00dfb6d9e0843dd2da89
+      size: 52739
   download_data:
     cmd: python src/data/make_dataset.py
     deps:
-    - path: params.yml
-      md5: 160cbfd0ed8f87c9c5cb28fbeef1072d
-      size: 266
+    - path: data_params.yml
+      md5: a68eabf79c3b3e28afb05baa1944bbc7
+      size: 32
     - path: src/data/make_dataset.py
-      md5: 075c6233f8732eedf7915732f9a8ebfd
-      size: 771
+      md5: a0667f4ad8c06551609bd0bf950167b7
+      size: 776
     outs:
     - path: data/raw
       md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
       size: 1358833013
       nfiles: 3
+  visualize:
+    cmd: streamlit run src/visualization/visualize.py
+    deps:
+    - path: models
+      md5: fc37870a93db61b94af9f0847577f09b.dir
+      size: 243476333
+      nfiles: 5
+    - path: src/visualization/visualize.py
+      md5: a71303fef593a9fd275fc4964623baf8
+      size: 814
+    outs:
+    - path: reports/visualization_metrics.txt
+      md5: fd7b6bb170dbaa9ef1076bc8be7e7593
+      size: 2144

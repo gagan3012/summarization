@@ -50,9 +50,6 @@ stages:
     deps:
       - models
       - src/visualization/visualize.py
-    metrics:
-      - reports/visualization_metrics.txt:
-          cache: false
   push_to_hf_hub:
     cmd: python src/models/hf_upload.py
     deps:

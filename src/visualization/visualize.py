@@ -1,6 +1,6 @@
 import streamlit as st
 
-from ..models import predict_model
+from src.models.predict_model import predict_model
 
 
 def visualize():
@@ -18,9 +18,6 @@ def visualize():
             sumtext = predict_model(text=text)
         st.write("# Generated Summary:")
         st.write("{}".format(sumtext))
-        with open("reports/visualization_metrics.txt", "w") as file1:
-            file1.writelines(text)
-            file1.writelines(sumtext)
 
 
 if __name__ == "__main__":
