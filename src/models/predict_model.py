@@ -1,6 +1,6 @@
 import yaml
 
-from model import Summarization
+from src.models.model import Summarization
 import pandas as pd
 
 
