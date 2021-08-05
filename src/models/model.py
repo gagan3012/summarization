@@ -7,7 +7,6 @@ from transformers import (
 )
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
-from pytorch_lightning.loggers import MLFlowLogger
 from dagshub.pytorch_lightning import DAGsHubLogger
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
@@ -16,6 +15,7 @@ from pytorch_lightning import LightningModule
 from datasets import load_metric
 from tqdm.auto import tqdm
 
+import mlflow.pytorch
 
 torch.cuda.empty_cache()
 pl.seed_everything(42)
@@ -326,9 +326,6 @@ class Summarization:
             learning_rate=learning_rate, adam_epsilon=adam_epsilon, weight_decay=weight_decay
         )
 
-        MLlogger = MLFlowLogger(experiment_name="Summarization",
-                                tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow")
-
         logger = DAGsHubLogger(metrics_path='reports/training_metrics.csv',
                                hparams_path='reports/training_params.yml')
 
@@ -349,14 +346,17 @@ class Summarization:
         gpus = -1 if use_gpu and torch.cuda.is_available() else 0
 
         trainer = Trainer(
-            logger=[MLlogger, logger],
+            logger=logger,
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,
             progress_bar_refresh_rate=5,
         )
 
-        trainer.fit(self.T5Model, self.data_module)
+        mlflow.pytorch.autolog(log_models=False)
+
+        with mlflow.start_run() as run:
+            trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
             self, model_type: str = 't5', model_dir: str = "models", use_gpu: bool = False
