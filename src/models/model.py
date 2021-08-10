@@ -360,6 +360,7 @@ class Summarization:
             weight_decay=weight_decay,
         )
 
+        logger = DAGsHubLogger(
 
         early_stop_callback = (
             [
