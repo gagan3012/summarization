@@ -11,6 +11,8 @@ with open('requirements.txt') as f:
 
 setup(
     name='t5s',
+    packages=find_packages(),
+    version='1.0.0',
     description="T5 Summarisation Using Pytorch Lightning",
     license='MIT License',
     classifiers=[
