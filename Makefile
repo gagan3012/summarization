@@ -66,6 +66,8 @@ clone:
 ## Update python package
 update:
 	python setup.py sdist bdist_wheel
+	python -m twine upload dist/*
+
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
