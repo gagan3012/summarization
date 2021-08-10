@@ -1,4 +1,4 @@
-.PHONY: clean dirs virtualenv lint requirements push pull run
+.PHONY: clean dirs virtualenv lint requirements push pull run clone
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -57,6 +57,10 @@ visualize:
 ## push the trained model to HF model hub
 push_to_hf_hub:
 	dvc repro push_to_hf_hub
+
+## Clone the T5 summarisation repo
+clone:
+	git clone https://dagshub.com/gagan3012/summarization.git
 
 #################################################################################
 # PROJECT RULES                                                                 #
