@@ -64,6 +64,7 @@ clone:
 	cd summarization
 
 ## Update python package
+update:
 	python setup.py sdist bdist_wheel
 #################################################################################
 # PROJECT RULES                                                                 #
