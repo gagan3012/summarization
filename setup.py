@@ -34,6 +34,7 @@ setup(
     url="https://dagshub.com/gagan3012/summarization.git",
     entry_points={
         'console_scripts': [
+            't5s=t5s.cli:main',
         ]
     },
 )
