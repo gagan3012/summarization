@@ -390,7 +390,6 @@ class Summarization:
 
         mlflow.pytorch.autolog(log_models=False)
 
-        with mlflow.start_run() as run:
             trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
