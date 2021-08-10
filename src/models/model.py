@@ -363,7 +363,8 @@ class Summarization:
         )
 
         logger = DAGsHubLogger(metrics_path='reports/training_metrics.csv',
-                               hparams_path='reports/training_params.yml')
+                               hparams_path='reports/training_params.yml',
+                               should_log_hparams=False)
 
         early_stop_callback = (
             [
