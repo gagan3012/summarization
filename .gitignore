@@ -93,6 +93,9 @@ coverage.xml
 .vscode
 /data
 
-wandb/
 summarization-dagshub/
 /models
+default/
+artifacts/
+mlruns/
+hf_model/

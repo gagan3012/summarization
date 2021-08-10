@@ -1,10 +1,7 @@
-import shutil
-from getpass import getpass
-from pathlib import Path
+
 
 import torch
 import pandas as pd
-from huggingface_hub import HfApi, Repository
 from transformers import (
     AdamW,
     T5ForConditionalGeneration,
@@ -15,7 +12,7 @@ from transformers import (
 )
 from torch.utils.data import Dataset, DataLoader
 import pytorch_lightning as pl
-from pytorch_lightning.loggers import MLFlowLogger, WandbLogger
+from dagshub.pytorch_lightning import DAGsHubLogger
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 from pytorch_lightning import LightningDataModule
@@ -23,8 +20,7 @@ from pytorch_lightning import LightningModule
 from datasets import load_metric
 from tqdm.auto import tqdm
 
-# from dagshub.pytorch_lightning import DAGsHubLogger
-
+import mlflow.pytorch
 
 torch.cuda.empty_cache()
 pl.seed_everything(42)
@@ -274,7 +270,9 @@ class LightningModel(LightningModule):
             },
         ]
         optimizer = AdamW(
-            optimizer_grouped_parameters, lr=self.learning_rate, eps=self.adam_epsilon
+            optimizer_grouped_parameters,
+            lr=self.learning_rate,
+            eps=self.adam_epsilon,
         )
         self.opt = optimizer
         return [optimizer]
@@ -364,14 +362,8 @@ class Summarization:
             weight_decay=weight_decay,
         )
 
-        MLlogger = MLFlowLogger(
-            experiment_name="Summarization",
-            tracking_uri="https://dagshub.com/gagan3012/summarization.mlflow",
-        )
-
-        WandLogger = WandbLogger(project="summarization-dagshub")
-
-        # logger = DAGsHubLogger(metrics_path='reports/training_metrics.txt')
+        logger = DAGsHubLogger(metrics_path='reports/training_metrics.csv',
+                               hparams_path='reports/training_params.yml')
 
         early_stop_callback = (
             [
@@ -390,14 +382,17 @@ class Summarization:
         gpus = -1 if use_gpu and torch.cuda.is_available() else 0
 
         trainer = Trainer(
-            logger=[WandLogger, MLlogger],
+            logger=logger,
             callbacks=early_stop_callback,
             max_epochs=max_epochs,
             gpus=gpus,
             progress_bar_refresh_rate=5,
         )
 
-        trainer.fit(self.T5Model, self.data_module)
+        mlflow.pytorch.autolog(log_models=False)
+
+        with mlflow.start_run() as run:
+            trainer.fit(self.T5Model, self.data_module)
 
     def load_model(
         self, model_type: str = "t5", model_dir: str = "models", use_gpu: bool = False
@@ -552,31 +547,3 @@ class Summarization:
             "rougeLsum High F1": results["rougeLsum"].high.fmeasure,
         }
         return output
-
-    def upload(self, hf_username, model_name):
-        hf_password = getpass("Enter your HuggingFace password")
-        if Path("./models").exists():
-            shutil.rmtree("./models")
-        token = HfApi().login(username=hf_username, password=hf_password)
-        del hf_password
-        model_url = HfApi().create_repo(token=token, name=model_name, exist_ok=True)
-        model_repo = Repository(
-            "./model",
-            clone_from=model_url,
-            use_auth_token=token,
-            git_email=f"{hf_username}@users.noreply.huggingface.co",
-            git_user=hf_username,
-        )
-
-        readme_txt = f"""
-            ---
-            Summarisation model {model_name}
-            """.strip()
-
-        (Path(model_repo.local_dir) / "README.md").write_text(readme_txt)
-        self.save_model()
-        commit_url = model_repo.push_to_hub()
-
-        print("Check out your model at:")
-        print(commit_url)
-        print(f"https://huggingface.co/{hf_username}/{model_name}")

@@ -48,7 +48,15 @@ pull:
 
 ## run the DVC pipeline - recompute any modified outputs such as processed data or trained models
 run:
-	dvc repro dvc.yaml
+	dvc repro eval
+
+## run the visualization using Streamlit
+visualize:
+	dvc repro visualize
+
+## push the trained model to HF model hub
+push_to_hf_hub:
+	dvc repro push_to_hf_hub
 
 #################################################################################
 # PROJECT RULES                                                                 #

@@ -1,5 +1,3 @@
-import json
-
 import yaml
 
 from model import Summarization
@@ -10,15 +8,15 @@ def train_model():
     """
     Train the model
     """
-    with open("params.yml") as f:
+    with open("model_params.yml") as f:
         params = yaml.safe_load(f)
 
     # Load the data
     train_df = pd.read_csv("data/processed/train.csv")
     eval_df = pd.read_csv("data/processed/validation.csv")
 
-    train_df = train_df.sample(frac=params["split"], replace=True, random_state=1)
-    eval_df = eval_df.sample(frac=params["split"], replace=True, random_state=1)
+    train_df = train_df.sample(random_state=1)
+    eval_df = eval_df.sample(random_state=1)
 
     model = Summarization()
     model.from_pretrained(
@@ -36,15 +34,6 @@ def train_model():
     )
 
     model.save_model(model_dir=params["model_dir"])
-
-    with open("wandb/latest-run/files/wandb-summary.json") as json_file:
-        data = json.load(json_file)
-
-    with open("reports/training_metrics.txt", "w") as fp:
-        json.dump(data, fp)
-
-    if params["upload_to_hf"]:
-        model.upload(hf_username=params["hf_username"], model_name=params["name"])
 
 
 if __name__ == "__main__":

@@ -1,5 +1,4 @@
 import streamlit as st
-import yaml
 
 from src.models.predict_model import predict_model
 
@@ -19,14 +18,7 @@ def visualize():
             sumtext = predict_model(text=text)
         st.write("# Generated Summary:")
         st.write("{}".format(sumtext))
-        with open("reports/visualization_metrics.txt", "w") as file1:
-            file1.writelines(text)
-            file1.writelines(sumtext)
 
 
 if __name__ == "__main__":
-    with open("params.yml") as f:
-        params = yaml.safe_load(f)
-
-    if params["visualise"]:
-        visualize()
+    visualize()
