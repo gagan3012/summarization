@@ -360,7 +360,6 @@ class Summarization:
             weight_decay=weight_decay,
         )
 
-                               should_log_hparams=False)
 
         early_stop_callback = (
             [
