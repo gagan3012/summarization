@@ -61,6 +61,7 @@ push_to_hf_hub:
 ## Clone the T5 summarisation repo
 clone:
 	git clone https://dagshub.com/gagan3012/summarization.git
+	cd summarization
 
 #################################################################################
 # PROJECT RULES                                                                 #
