@@ -18,4 +18,4 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
-        run: git push --force https://gagan3012:$HF_TOKEN@huggingface.co/spaces/gagan3012/summarization
+        run: git push --force https://gagan3012:$HF_TOKEN@huggingface.co/spaces/gagan3012/summarization +HEAD:main
