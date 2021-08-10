@@ -98,3 +98,4 @@ summarization-dagshub/
 default/
 artifacts/
 mlruns/
+hf_model/

@@ -9,6 +9,3 @@ num_workers: 2
 model_dir: models
 metric: rouge
 source_dir: src
-visualise: True
-hf_username: gagan3012
-upload_to_hf: False

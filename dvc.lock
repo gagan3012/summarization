@@ -10,8 +10,8 @@ stages:
       md5: 6069153a075b00dfb6d9e0843dd2da89
       size: 52739
     - path: model_params.yml
-      md5: 9fcf006ee30f2b751078598a3fba9bb5
-      size: 235
+      md5: 1bf2edf25e851cc9cd3be75fbd9905a3
+      size: 177
     - path: src/models/train_model.py
       md5: f7d1121426c3d5530c2b9697cb7ac74a
       size: 951
@@ -21,7 +21,7 @@ stages:
       size: 243476333
       nfiles: 5
     - path: reports/training_metrics.csv
-      md5: 0b6c1518aed802bea976e883caac2a90
+      md5: 3b309def91a32e521acd23b163742522
       size: 320
   eval:
     cmd: python src/models/evaluate_model.py
@@ -30,8 +30,8 @@ stages:
       md5: 3eec94ac211c76363a3d968663b82d02
       size: 39574
     - path: model_params.yml
-      md5: 9fcf006ee30f2b751078598a3fba9bb5
-      size: 235
+      md5: 1bf2edf25e851cc9cd3be75fbd9905a3
+      size: 177
     - path: models
       md5: fc37870a93db61b94af9f0847577f09b.dir
       size: 243476333
@@ -41,7 +41,7 @@ stages:
       size: 705
     outs:
     - path: reports/evaluation_metrics.csv
-      md5: a5fa12e6df10884217614c007d146a26
+      md5: eaa3bf017026aa1be31560f308fff78e
       size: 2122
   process_data:
     cmd: python src/data/process_data.py
@@ -88,9 +88,18 @@ stages:
       size: 243476333
       nfiles: 5
     - path: src/visualization/visualize.py
-      md5: a71303fef593a9fd275fc4964623baf8
-      size: 814
-    outs:
-    - path: reports/visualization_metrics.txt
-      md5: fd7b6bb170dbaa9ef1076bc8be7e7593
-      size: 2144
+      md5: 4226e4148abb5ac186c0ab8c1d87b228
+      size: 671
+  push_to_hf_hub:
+    cmd: python src/models/hf_upload.py
+    deps:
+    - path: model_params.yml
+      md5: 1bf2edf25e851cc9cd3be75fbd9905a3
+      size: 177
+    - path: models
+      md5: fc37870a93db61b94af9f0847577f09b.dir
+      size: 243476333
+      nfiles: 5
+    - path: src/models/hf_upload.py
+      md5: a953816a3eb7bef702313544103a1c11
+      size: 1290

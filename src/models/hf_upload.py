@@ -7,34 +7,33 @@ from model import Summarization
 from huggingface_hub import HfApi, Repository
 
 
-def upload(upload_model, model_name):
+def upload(model_to_upload, model_name):
     hf_username = input("Enter your HuggingFace username:")
-    hf_password = getpass("Enter your HuggingFace password:")
-    if Path("./models").exists():
-        shutil.rmtree("./models")
-    token = HfApi().login(username=hf_username, password=hf_password)
-    del hf_password
-    model_url = HfApi().create_repo(token=token, name=model_name, exist_ok=True)
+    hf_token = getpass("Enter your HuggingFace token:")
+    model_url = HfApi().create_repo(token=hf_token, name=model_name, exist_ok=True)
     model_repo = Repository(
-        "./model",
+        "./hf_model",
         clone_from=model_url,
-        use_auth_token=token,
+        use_auth_token=hf_token,
         git_email=f"{hf_username}@users.noreply.huggingface.co",
         git_user=hf_username,
     )
 
+    del hf_token
     readme_txt = f"""
             ---
             Summarisation model {model_name}
             """.strip()
 
     (Path(model_repo.local_dir) / "README.md").write_text(readme_txt)
-    upload_model.save_model()
     commit_url = model_repo.push_to_hub()
 
     print("Check out your model at:")
     print(commit_url)
     print(f"https://huggingface.co/{hf_username}/{model_name}")
+
+    if Path("./hf_model").exists():
+        shutil.rmtree("./hf_model")
 
 
 if __name__ == "__main__":
@@ -44,4 +43,4 @@ if __name__ == "__main__":
     model = Summarization()
     model.load_model(model_dir="./models")
 
-    upload(upload_model=model, model_name=params["name"])
+    upload(model_to_upload=model, model_name=params["name"])
