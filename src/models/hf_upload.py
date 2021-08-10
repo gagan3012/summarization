@@ -26,6 +26,7 @@ def upload(model_to_upload, model_name):
             """.strip()
 
     (Path(model_repo.local_dir) / "README.md").write_text(readme_txt)
+    model_to_upload.save_model(Path(model_repo.local_dir))
     commit_url = model_repo.push_to_hub()
 
     print("Check out your model at:")
