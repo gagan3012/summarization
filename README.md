@@ -13,6 +13,7 @@ summarization
 
 T5 Summarisation Using Pytorch Lightning
 
+[![pypi Version](https://img.shields.io/pypi/v/t5s.svg?logo=pypi&logoColor=white)](https://pypi.org/project/5ts/)
 Instructions
 ------------
 1. Clone the repo.
