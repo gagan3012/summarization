@@ -1,6 +1,5 @@
 import streamlit as st
 
-from models.predict_model import predict_model
 
 
 def visualize():
