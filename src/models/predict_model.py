@@ -15,6 +15,5 @@ def predict_model(text: str):
     pre_summary = model.predict(text)
     return pre_summary
 
-    text = pd.load_csv("data/processed/test.csv")["input_text"][0]
     pre_summary = predict_model(text)
     print(pre_summary)
