@@ -3,6 +3,7 @@ import yaml
 from model import Summarization
 
 
+def predict_model(text: str):
     """
     Predict the summary of the given text.
     """
