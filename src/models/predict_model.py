@@ -15,4 +15,3 @@ def predict_model(text: str):
     pre_summary = model.predict(text)
     return pre_summary
 
-    print(pre_summary)
