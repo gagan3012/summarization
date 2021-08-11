@@ -41,6 +41,7 @@ class Run(object):
             list_files = subprocess.run(["git", "clone", "https://dagshub.com/gagan3012/summarization.git"])
             os.chdir('./summarization/')
             retval = os.getcwd()
+            print(retval)
             return list_files.returncode
         os.chdir('./summarization/')
         retval = os.getcwd()
