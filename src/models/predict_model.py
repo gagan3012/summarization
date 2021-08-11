@@ -1,6 +1,5 @@
 import yaml
 
-from src.models.model import Summarization
 
 
 def predict_model(text):
