@@ -20,6 +20,7 @@ T5 Summarisation Using Pytorch Lightning
 
 ## Usage
 
+To use and run the DVC pipeline install the `t5s` package
 Instructions
 ------------
 1. Clone the repo.
