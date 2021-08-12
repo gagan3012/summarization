@@ -26,6 +26,7 @@ To use and run the DVC pipeline install the `t5s` package
 pip install t5s
 ```
 
+Firstly we need to clone the repo containing the code so we can do that using:
 
 
 Instructions
