@@ -30,6 +30,7 @@ Firstly we need to clone the repo containing the code so we can do that using:
 
 ```shell script
 t5s clone 
+```
 
 Instructions
 ------------
