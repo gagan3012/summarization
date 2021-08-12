@@ -62,7 +62,7 @@ t5s run
 
 Finally to push the model to DVC
 
-```shell script
+```
 
 t5s push
 
