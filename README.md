@@ -1,13 +1,3 @@
----
-title: T5S
-emoji: 💯
-colorFrom: yellow
-colorTo: red
-sdk: streamlit
-app_file: src/visualization/visualize.py
-pinned: false
----  
-
 <h1 align="center">t5s</h1>
 
 [![pypi Version](https://img.shields.io/pypi/v/t5s.svg?logo=pypi&logoColor=white)](https://pypi.org/project/t5s/)
@@ -65,7 +55,7 @@ t5s push
 To push this model to HuggingFace Hub for inference you can run:
 
 ```
-t5s push_to_hf_hub
+t5s upload
 ```
 
 Next if we would like to test the model and visualise the results we can run:
@@ -75,3 +65,12 @@ t5s visualize
 ```
 And this would create a streamlit app for testing
 
+---
+title: t5s
+emoji: 💯
+colorFrom: yellow
+colorTo: red
+sdk: streamlit
+app_file: src/visualization/visualize.py
+pinned: false
+---  
