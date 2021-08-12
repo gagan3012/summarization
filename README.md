@@ -38,7 +38,7 @@ t5s clone
 
 We would then have to create the required directories to run the pipeline
 
-```shell script
+```
 
 t5s dirs
 
