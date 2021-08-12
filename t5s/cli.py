@@ -37,6 +37,7 @@ class Run(object):
         arguments = self.arguments
         print(f"arguments passed: {arguments['command']}")
         # os.chdir('../')
+        cmd = ['requirements', 'dirs', 'push', 'pull', 'run', 'visualize', 'upload', 'lint']
         if arguments['command'] == "clone":
             list_files = subprocess.run(["git", "clone", "https://dagshub.com/gagan3012/summarization.git"])
             os.chdir('./summarization/')
