@@ -22,7 +22,7 @@ T5 Summarisation Using Pytorch Lightning
 
 To use and run the DVC pipeline install the `t5s` package
 
-```shell script
+```
 
 pip install t5s
 
