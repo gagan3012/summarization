@@ -28,6 +28,7 @@ pip install t5s
 
 Firstly we need to clone the repo containing the code so we can do that using:
 
+```shell script
 
 Instructions
 ------------
