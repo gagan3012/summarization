@@ -1,5 +1,6 @@
 ---
 title: T5S
+emoji: 💯
 colorFrom: yellow
 colorTo: red
 sdk: streamlit
