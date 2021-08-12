@@ -51,6 +51,7 @@ class Run(object):
             list_files = subprocess.run(["make", arguments["command"]])
             return list_files.returncode
         else:
+            print("Command not supported")
             raise Exception
 
 
