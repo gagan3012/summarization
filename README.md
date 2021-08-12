@@ -26,13 +26,15 @@ Here you will find the code for the project, but also the data, models, pipeline
 Have a great idea for how to improve the model? Want to add data and metrics to make it more explainable/fair? We'd love to get your help.
 
 
-## Usage
+## Installation
 
 To use and run the DVC pipeline install the `t5s` package
 
 ```
 pip install t5s
 ```
+
+## Usage
 
 Firstly we need to clone the repo containing the code so we can do that using:
 
