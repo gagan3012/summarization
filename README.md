@@ -53,6 +53,21 @@ t5s run
 Finally to push the model to DVC
 
 ```shell script
+t5s push
+```
+
+To push this model to HuggingFace Hub for inference you can run:
+
+```shell script
+t5s push_to_hf_hub
+```
+
+Next if we would like to test the model and visualise the results we can run:
+```shell script
+t5s visualize
+```
+And this would create a streamlit app for testing
+
 Instructions
 ------------
 1. Clone the repo.
