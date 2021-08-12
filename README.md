@@ -32,6 +32,7 @@ Firstly we need to clone the repo containing the code so we can do that using:
 t5s clone 
 ```
 
+We would then have to create the required directories to run the pipeline
 Instructions
 ------------
 1. Clone the repo.
