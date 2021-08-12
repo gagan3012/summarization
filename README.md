@@ -2,6 +2,10 @@
 
 T5 Summarisation Using Pytorch Lightning, DVC, DagsHub and HuggingFace Spaces
 
+Here you will find the code for the project, but also the data, models, pipelines and experiments. This means that the project is easily reproducible on any machine, but also that you can contribute data, models, and code to it.
+
+Have a great idea for how to improve the model? Want to add data and metrics to make it more explainable/fair? We'd love to get your help.
+
 [![pypi Version](https://img.shields.io/pypi/v/t5s.svg?logo=pypi&logoColor=white)](https://pypi.org/project/t5s/)
 [![Downloads](https://static.pepy.tech/personalized-badge/t5s?period=total&units=none&left_color=grey&right_color=orange&left_text=Pip%20Downloads)](https://pepy.tech/project/t5s)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
