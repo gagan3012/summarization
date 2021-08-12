@@ -77,7 +77,7 @@ t5s push_to_hf_hub
 ```
 
 Next if we would like to test the model and visualise the results we can run:
-```shell script
+```
 
 t5s visualize
 
