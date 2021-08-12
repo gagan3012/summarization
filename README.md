@@ -70,7 +70,7 @@ t5s push
 
 To push this model to HuggingFace Hub for inference you can run:
 
-```shell script
+```
 
 t5s push_to_hf_hub
 
