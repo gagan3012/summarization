@@ -23,66 +23,67 @@ T5 Summarisation Using Pytorch Lightning
 To use and run the DVC pipeline install the `t5s` package
 
 ```shell script
+
 pip install t5s
+
 ```
 
 Firstly we need to clone the repo containing the code so we can do that using:
 
 ```shell script
+
 t5s clone 
+
 ```
 
 We would then have to create the required directories to run the pipeline
 
 ```shell script
+
 t5s dirs
+
 ``` 
 
 Then we need to pull the models from DVC
 
 ```shell script
+
 t5s pull
+
 ```
 
 Now to run the training pipeline we can run:
 
 ```shell script
+
 t5s run
+
 ```
 
 Finally to push the model to DVC
 
 ```shell script
+
 t5s push
+
 ```
 
 To push this model to HuggingFace Hub for inference you can run:
 
 ```shell script
+
 t5s push_to_hf_hub
+
 ```
 
 Next if we would like to test the model and visualise the results we can run:
 ```shell script
+
 t5s visualize
+
 ```
 And this would create a streamlit app for testing
 
-
-
-
-
-
-Instructions
-------------
-1. Clone the repo.
-1. Edit the `params.yml` to change the parameters to train the model.
-1. Run `make dirs` to create the missing parts of the directory structure described below. 
-1. *Optional:* Run `make virtualenv` to create a python virtual environment. Skip if using conda or some other env manager.
-    1. Run `source env/bin/activate` to activate the virtualenv. 
-1. Run `make requirements` to install required python packages.
-1. Process your data, train and evaluate your model using `make run`
-1. When you're happy with the result, commit files (including .dvc files) to git.
  
 Project Organization
 ------------
