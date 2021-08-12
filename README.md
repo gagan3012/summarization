@@ -39,6 +39,20 @@ t5s dirs
 ``` 
 
 Then we need to pull the models from DVC
+
+```shell script
+t5s pull
+```
+
+Now to run the training pipeline we can run:
+
+```shell script
+t5s run
+```
+
+Finally to push the model to DVC
+
+```shell script
 Instructions
 ------------
 1. Clone the repo.
