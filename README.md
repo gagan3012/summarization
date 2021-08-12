@@ -46,7 +46,7 @@ t5s dirs
 
 Then we need to pull the models from DVC
 
-```shell script
+```
 
 t5s pull
 
