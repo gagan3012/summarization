@@ -44,11 +44,6 @@ class Run(object):
             retval = os.getcwd()
             print(retval)
             return list_files.returncode
-        os.chdir('./summarization/')
-        retval = os.getcwd()
-        print(retval)
-        list_files = subprocess.run(["make", arguments["command"]])
-        return list_files.returncode
 
 
 def parse_args(args):
