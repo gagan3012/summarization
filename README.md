@@ -1,6 +1,5 @@
 ---
 title: T5-Summarisation
-emoji: ✌
 colorFrom: yellow
 colorTo: red
 sdk: streamlit
