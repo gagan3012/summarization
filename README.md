@@ -1,5 +1,4 @@
 ---
-title: T5-Summarisation
 title: T5S
 colorFrom: yellow
 colorTo: red
