@@ -36,6 +36,8 @@ pip install t5s
 
 ## Usage
 
+![carbon (7)](https://user-images.githubusercontent.com/49101362/129279588-17271a4c-7258-4208-a94d-89e5b97b6cd0.png)
+
 Firstly we need to clone the repo containing the code so we can do that using:
 
 ```
@@ -79,5 +81,3 @@ t5s visualize
 ```
 And this would create a streamlit app for testing
 
-
-![carbon (7)](https://user-images.githubusercontent.com/49101362/129279588-17271a4c-7258-4208-a94d-89e5b97b6cd0.png)
