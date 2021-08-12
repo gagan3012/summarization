@@ -54,7 +54,7 @@ t5s pull
 
 Now to run the training pipeline we can run:
 
-```shell script
+```
 
 t5s run
 
