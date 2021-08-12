@@ -10,13 +10,14 @@ pinned: false
 
 <h1 align="center">t5s</h1>
 
-T5 Summarisation Using Pytorch Lightning
+T5 Summarisation Using Pytorch Lightning, DVC, DagsHub and HuggingFace Spaces
 
 [![pypi Version](https://img.shields.io/pypi/v/t5s.svg?logo=pypi&logoColor=white)](https://pypi.org/project/t5s/)
 [![Downloads](https://static.pepy.tech/personalized-badge/t5s?period=total&units=none&left_color=grey&right_color=orange&left_text=Pip%20Downloads)](https://pepy.tech/project/t5s)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://huggingface.co/spaces/gagan3012/summarization)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gagan3012/summarization/blob/master/notebooks/t5s.ipynb)
+[![DAGSHub](https://img.shields.io/badge/%F0%9F%90%B6-Pipeline%20on%20DAGsHub-green)](https://dagshub.com/gagan3012/summarization)
 
 ## Usage
 
