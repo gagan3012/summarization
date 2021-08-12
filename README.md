@@ -38,6 +38,7 @@ We would then have to create the required directories to run the pipeline
 t5s dirs
 ``` 
 
+Then we need to pull the models from DVC
 Instructions
 ------------
 1. Clone the repo.
