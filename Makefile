@@ -55,13 +55,12 @@ visualize:
 	dvc repro visualize
 
 ## push the trained model to HF model hub
-push_to_hf_hub:
+upload:
 	dvc repro push_to_hf_hub
 
 ## Clone the T5 summarisation repo
 clone:
 	git clone https://dagshub.com/gagan3012/summarization.git
-	cd summarization
 
 ## Update python package
 update:
