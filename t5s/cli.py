@@ -50,6 +50,8 @@ class Run(object):
             print(retval)
             list_files = subprocess.run(["make", arguments["command"]])
             return list_files.returncode
+        else:
+            raise Exception
 
 
 def parse_args(args):
