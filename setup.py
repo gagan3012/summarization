@@ -1,8 +1,8 @@
+from os.path import join, dirname
 from setuptools import find_packages, setup
 
 try:
-    with open('README.md', 'r') as readme:
-        long_description = readme.read()
+    long_description = open(join(dirname(__file__), "README.md"), encoding="utf8").read()
 except Exception:
     long_description = None
 
@@ -12,7 +12,7 @@ with open('requirements.txt') as f:
 setup(
     name='t5s',
     packages=find_packages(),
-    version='1.0.4',
+    version='2.0.0',
     description="T5 Summarisation Using Pytorch Lightning",
     license='MIT License',
     classifiers=[
