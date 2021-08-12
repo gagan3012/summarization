@@ -78,3 +78,6 @@ Next if we would like to test the model and visualise the results we can run:
 t5s visualize
 ```
 And this would create a streamlit app for testing
+
+
+![carbon (7)](https://user-images.githubusercontent.com/49101362/129279588-17271a4c-7258-4208-a94d-89e5b97b6cd0.png)
