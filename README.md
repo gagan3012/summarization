@@ -8,8 +8,7 @@ app_file: src/visualization/visualize.py
 pinned: false
 ---
 
-summarization
-==============================
+<h1 align="center">t5s</h1>
 
 T5 Summarisation Using Pytorch Lightning
 
