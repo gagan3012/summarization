@@ -22,7 +22,7 @@ parser_run = command_subparser.add_parser('run', help="run the DVC pipeline - re
 
 parser_visualize = command_subparser.add_parser('visualize', help="run the visualization using Streamlit")
 
-parser_push_to_hf_hub = command_subparser.add_parser('push_to_hf_hub', help="push the trained model to HF model hub")
+parser_upload = command_subparser.add_parser('upload', help="push the trained model to HF model hub")
 
 parser_lint = command_subparser.add_parser('lint', help=" Lint using flake8")
 
