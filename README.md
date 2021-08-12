@@ -29,64 +29,49 @@ Have a great idea for how to improve the model? Want to add data and metrics to 
 To use and run the DVC pipeline install the `t5s` package
 
 ```
-
 pip install t5s
-
 ```
 
 Firstly we need to clone the repo containing the code so we can do that using:
 
 ```
-
 t5s clone 
-
 ```
 
 We would then have to create the required directories to run the pipeline
 
 ```
-
 t5s dirs
-
 ``` 
 
 Then we need to pull the models from DVC
 
 ```
-
 t5s pull
-
 ```
 
 Now to run the training pipeline we can run:
 
 ```
-
 t5s run
-
 ```
 
 Finally to push the model to DVC
 
 ```
-
 t5s push
-
 ```
 
 To push this model to HuggingFace Hub for inference you can run:
 
 ```
-
 t5s push_to_hf_hub
-
 ```
 
 Next if we would like to test the model and visualise the results we can run:
+
 ```
-
 t5s visualize
-
 ```
 And this would create a streamlit app for testing
 
