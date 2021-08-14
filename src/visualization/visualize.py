@@ -1,5 +1,6 @@
 import streamlit as st
-
+import os
+retval = os.getcwd()
 from src.models.predict_model import predict_model
 
 
@@ -11,6 +12,7 @@ def visualize():
         https://www.linkedin.com/in/gbhatia30/) or [Github](https://github.com/gagan3012).*
         """
     )
+    st.write(retval)
 
     text = st.text_area("Enter text here")
     if st.button("Generate Summary"):
