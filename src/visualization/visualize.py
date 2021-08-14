@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 retval = os.getcwd()
+st.write(retval)
+
 from src.models.predict_model import predict_model
 
 
