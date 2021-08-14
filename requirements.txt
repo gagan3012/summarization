@@ -10,7 +10,6 @@ dvc==2.5.4
 mlflow==1.19.0
 streamlit==0.85.1
 pyyaml
-
 # external requirements
 click
 coverage
