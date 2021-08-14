@@ -68,6 +68,7 @@ Before pushing make sure that the DVC remote is setup correctly:
 
 ```
 
+dvc remote modify origin url https://dagshub.com/{user_name}/summarization.dvc
 ```
 ```
 t5s push
