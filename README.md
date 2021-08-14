@@ -67,6 +67,7 @@ Finally to push the model to DVC
 Before pushing make sure that the DVC remote is setup correctly:
 
 ```
+```
 t5s push
 ```
 
