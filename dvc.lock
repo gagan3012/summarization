@@ -5,76 +5,76 @@ stages:
     deps:
     - path: data/processed/train.csv
       md5: 5331b9c32b2d097d8d7aca01de5524bc
-      size: 1198262
+      size: 1198550
     - path: data/processed/validation.csv
       md5: 6069153a075b00dfb6d9e0843dd2da89
-      size: 52739
+      size: 52753
     - path: model_params.yml
       md5: 1bf2edf25e851cc9cd3be75fbd9905a3
-      size: 177
+      size: 188
     - path: src/models/train_model.py
       md5: f7d1121426c3d5530c2b9697cb7ac74a
-      size: 951
+      size: 991
     outs:
     - path: models
-      md5: fc37870a93db61b94af9f0847577f09b.dir
-      size: 243476333
-      nfiles: 5
+      md5: 687b74d21b979d09bfdfff0722eae305.dir
+      size: 244268079
+      nfiles: 6
     - path: reports/training_metrics.csv
-      md5: 3b309def91a32e521acd23b163742522
+      md5: e0f69aef2d1d7f02c561f8c7801c3a20
       size: 320
   eval:
     cmd: python src/models/evaluate_model.py
     deps:
     - path: data/processed/test.csv
       md5: 3eec94ac211c76363a3d968663b82d02
-      size: 39574
+      size: 39586
     - path: model_params.yml
       md5: 1bf2edf25e851cc9cd3be75fbd9905a3
-      size: 177
+      size: 188
     - path: models
-      md5: fc37870a93db61b94af9f0847577f09b.dir
-      size: 243476333
-      nfiles: 5
+      md5: 687b74d21b979d09bfdfff0722eae305.dir
+      size: 244268079
+      nfiles: 6
     - path: src/models/evaluate_model.py
-      md5: 89edb77aaab3055605ae6db2e21eab82
-      size: 705
+      md5: ba0f4c7aa238de433cd389e9d2e66d64
+      size: 734
     outs:
     - path: reports/evaluation_metrics.csv
-      md5: eaa3bf017026aa1be31560f308fff78e
-      size: 2122
+      md5: aef31e3b826508ffe01ab4f579715ff8
+      size: 2117
   process_data:
     cmd: python src/data/process_data.py
     deps:
     - path: data/raw
       md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
-      size: 1358833013
+      size: 1359144987
       nfiles: 3
     - path: data_params.yml
       md5: a68eabf79c3b3e28afb05baa1944bbc7
-      size: 32
+      size: 33
     - path: src/data/process_data.py
-      md5: 68db554a69a0c8ce807907afa2be5e9c
-      size: 521
+      md5: 112f5e26a26956c508da053b4e2a950e
+      size: 530
     outs:
     - path: data/processed/test.csv
       md5: 3eec94ac211c76363a3d968663b82d02
-      size: 39574
+      size: 39586
     - path: data/processed/train.csv
       md5: 5331b9c32b2d097d8d7aca01de5524bc
-      size: 1198262
+      size: 1198550
     - path: data/processed/validation.csv
       md5: 6069153a075b00dfb6d9e0843dd2da89
-      size: 52739
+      size: 52753
   download_data:
     cmd: python src/data/make_dataset.py
     deps:
     - path: data_params.yml
       md5: a68eabf79c3b3e28afb05baa1944bbc7
-      size: 32
+      size: 33
     - path: src/data/make_dataset.py
       md5: a0667f4ad8c06551609bd0bf950167b7
-      size: 776
+      size: 801
     outs:
     - path: data/raw
       md5: 2ab20ac1b58df875a590b07d0e04eb5b.dir
