@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 retval = os.getcwd()
+os.chdir("src/")
 from src.models.predict_model import predict_model
 
 
