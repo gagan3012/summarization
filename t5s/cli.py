@@ -123,6 +123,7 @@ def start(arguments):
     data_params = {"data": arguments["dataset"], "split": arguments["split"]}
     model_params = {
         "name": arguments["name"],
+        "model_type": arguments["model_type"],
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
