@@ -136,6 +136,8 @@ def start(arguments):
     newdct.update(model_params)
     with open("model_params.yml", "w") as f:
         yaml.dump(newdct, f)
+    dicts = {}
+    dicts.update(newdct)
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
