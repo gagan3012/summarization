@@ -38,6 +38,9 @@ parser_start.add_argument(
     "--model_name",
     default="t5-base",
     help="Enter the model to be used eg t5-base",
+)
+parser_start.add_argument(
+    "-e", "--epochs", default=5, help="Enter the number of epochs"
 parser_dirs = command_subparser.add_parser(
     "dirs",
     help="Create directories that are ignored by git but required for " "the project",
