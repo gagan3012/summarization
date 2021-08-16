@@ -119,6 +119,8 @@ class Run(object):
             raise Exception
 
 
+def start(arguments):
+    data_params = {"data": arguments["dataset"], "split": arguments["split"]}
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
