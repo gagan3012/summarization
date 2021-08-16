@@ -130,6 +130,8 @@ def start(arguments):
         "batch_size": arguments["batch_size"],
     }
     with open("data_params.yml", "w") as f:
+        yaml.dump(data_params, f)
+    with open("model_params.yml") as f:
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
