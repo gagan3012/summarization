@@ -127,6 +127,9 @@ def start(arguments):
         "model_name": arguments["model_name"],
         "epochs": arguments["epochs"],
         "learning_rate": arguments["learning_rate"],
+        "batch_size": arguments["batch_size"],
+    }
+    with open("data_params.yml", "w") as f:
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
