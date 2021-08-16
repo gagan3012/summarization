@@ -18,6 +18,9 @@ parser_req = command_subparser.add_parser(
 )
 
 parser_start = command_subparser.add_parser("start", help="Define parameters")
+parser_start.add_argument(
+    "-d",
+    "--dataset",
 parser_dirs = command_subparser.add_parser(
     "dirs",
     help="Create directories that are ignored by git but required for " "the project",
