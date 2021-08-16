@@ -4,7 +4,7 @@ emoji: 💯
 colorFrom: yellow
 colorTo: red
 sdk: streamlit
-app_file: src/visualization/visualize.py
+app_file: visualization/visualize.py
 pinned: false
 ---
 
