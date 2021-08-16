@@ -32,6 +32,9 @@ parser_start.add_argument(
 )
 parser_start.add_argument(
     "-mt", "--model_type", default="t5", help="Enter the model type"
+)
+parser_start.add_argument(
+    "-m",
 parser_dirs = command_subparser.add_parser(
     "dirs",
     help="Create directories that are ignored by git but required for " "the project",
