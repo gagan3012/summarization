@@ -125,6 +125,7 @@ def start(arguments):
         "name": arguments["name"],
         "model_type": arguments["model_type"],
         "model_name": arguments["model_name"],
+        "epochs": arguments["epochs"],
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
