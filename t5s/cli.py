@@ -112,7 +112,6 @@ class Run(object):
         elif arguments["command"] == "start":
             start(arguments=arguments)
         elif arguments["command"] in cmd:
-            os.chdir("./summarization/")
             retval = os.getcwd()
             print(retval)
             list_files = subprocess.run(["make", arguments["command"]])
