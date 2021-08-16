@@ -26,6 +26,7 @@ parser_start.add_argument(
 )
 
 parser_start.add_argument("--split", default=0.001, help="Enter the split required")
+parser_start.add_argument("-s", "--split", default=0.001, help="Enter the split required")
 
 parser_start.add_argument(
     "-n", "--name", default="summarsiation", help="Enter the name of the model"
