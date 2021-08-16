@@ -109,6 +109,7 @@ class Run(object):
             retval = os.getcwd()
             print(retval)
             return list_files.returncode
+        elif arguments["command"] == "start":
         elif arguments["command"] in cmd:
             os.chdir("./summarization/")
             retval = os.getcwd()
