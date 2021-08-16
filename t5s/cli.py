@@ -22,31 +22,32 @@ parser_start.add_argument(
     "-d",
     "--dataset",
     default="cnn_dailymail",
-    help="Enter the name of the dataset to be used",
+    help="Enter the name of the dataset to be used",type=str
 )
 
-parser_start.add_argument("-s", "--split", default=0.001, help="Enter the split required")
+parser_start.add_argument("-s", "--split", default=0.001, help="Enter the split required",type=float)
 
 parser_start.add_argument(
     "-n", "--name", default="summarsiation", help="Enter the name of the model"
 )
 parser_start.add_argument(
-    "-mt", "--model_type", default="t5", help="Enter the model type"
+    "-mt", "--model_type", default="t5", help="Enter the model type",type=str
 )
 parser_start.add_argument(
     "-m",
     "--model_name",
     default="t5-base",
     help="Enter the model to be used eg t5-base",
+    type=str
 )
 parser_start.add_argument(
-    "-e", "--epochs", default=5, help="Enter the number of epochs"
+    "-e", "--epochs", default=5, help="Enter the number of epochs", type=int
 )
 parser_start.add_argument(
-    "-lr", "--learning-rate", default=0.0001, help="Enter the number of epochs"
+    "-lr", "--learning-rate", default=0.0001, help="Enter the number of epochs", type=float
 )
 parser_start.add_argument(
-    "-b", "--batch-size", default=2, help="Enter the number of batches"
+    "-b", "--batch-size", default=2, help="Enter the number of batches", type=int
 )
 
 parser_dirs = command_subparser.add_parser(
