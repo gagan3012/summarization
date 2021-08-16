@@ -138,6 +138,8 @@ def start(arguments):
         yaml.dump(newdct, f)
     dicts = {}
     dicts.update(newdct)
+    dicts.update(data_params)
+    print("Final parameters for the run are: {}".format(dicts))
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
