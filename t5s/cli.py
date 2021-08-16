@@ -110,6 +110,29 @@ class Run(object):
             print(retval)
             return list_files.returncode
         elif arguments["command"] == "start":
+            os.chdir("./summarization/")
+            print("""
+            usage: t5s start [-h] [-d DATASET] [-s SPLIT] [-n NAME] [-mt MODEL_TYPE]
+                 [-m MODEL_NAME] [-e EPOCHS] [-lr LEARNING_RATE]
+                 [-b BATCH_SIZE]
+                 
+  -h, --help            show this help message and exit
+  -d DATASET, --dataset DATASET
+                        Enter the name of the dataset to be used
+  -s SPLIT, --split SPLIT
+                        Enter the split required
+  -n NAME, --name NAME  Enter the name of the model
+  -mt MODEL_TYPE, --model_type MODEL_TYPE
+                        Enter the model type
+  -m MODEL_NAME, --model_name MODEL_NAME
+                        Enter the model to be used eg t5-base
+  -e EPOCHS, --epochs EPOCHS
+                        Enter the number of epochs
+  -lr LEARNING_RATE, --learning-rate LEARNING_RATE
+                        Enter the number of epochs
+  -b BATCH_SIZE, --batch-size BATCH_SIZE
+                        Enter the number of batches
+            """)
             start(arguments=arguments)
         elif arguments["command"] in cmd:
             list_files = subprocess.run(["make", arguments["command"]])
