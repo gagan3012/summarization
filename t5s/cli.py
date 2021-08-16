@@ -132,6 +132,8 @@ def start(arguments):
     with open("data_params.yml", "w") as f:
         yaml.dump(data_params, f)
     with open("model_params.yml") as f:
+        newdct = yaml.safe_load(f)
+    newdct.update(model_params)
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
