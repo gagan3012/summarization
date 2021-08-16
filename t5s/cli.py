@@ -21,6 +21,9 @@ parser_start = command_subparser.add_parser("start", help="Define parameters")
 parser_start.add_argument(
     "-d",
     "--dataset",
+    default="cnn_dailymail",
+    help="Enter the name of the dataset to be used",
+)
 parser_dirs = command_subparser.add_parser(
     "dirs",
     help="Create directories that are ignored by git but required for " "the project",
