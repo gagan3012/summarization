@@ -50,6 +50,13 @@ We would then have to create the required directories to run the pipeline
 t5s dirs
 ``` 
 
+Now to define the parameters for the run we have to run:
+```
+t5s start [-h] [-d DATASET] [-s SPLIT] [-n NAME] [-mt MODEL_TYPE]
+                 [-m MODEL_NAME] [-e EPOCHS] [-lr LEARNING_RATE]
+                 [-b BATCH_SIZE]
+```
+
 Then we need to pull the models from DVC
 
 ```
