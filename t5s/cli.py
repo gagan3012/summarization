@@ -135,6 +135,7 @@ class Run(object):
             """)
             start(arguments=arguments)
         elif arguments["command"] in cmd:
+            os.chdir("./summarization/")
             list_files = subprocess.run(["make", arguments["command"]])
             return list_files.returncode
         else:
