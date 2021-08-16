@@ -41,6 +41,9 @@ parser_start.add_argument(
 )
 parser_start.add_argument(
     "-e", "--epochs", default=5, help="Enter the number of epochs"
+)
+parser_start.add_argument(
+    "-lr", "--learning-rate", default=0.0001, help="Enter the number of epochs"
 parser_dirs = command_subparser.add_parser(
     "dirs",
     help="Create directories that are ignored by git but required for " "the project",
