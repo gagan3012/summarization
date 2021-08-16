@@ -24,6 +24,9 @@ parser_start.add_argument(
     default="cnn_dailymail",
     help="Enter the name of the dataset to be used",
 )
+
+parser_start.add_argument("--split", default=0.001, help="Enter the split required")
+
 parser_dirs = command_subparser.add_parser(
     "dirs",
     help="Create directories that are ignored by git but required for " "the project",
