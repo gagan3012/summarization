@@ -73,6 +73,7 @@ dvc remote modify origin --local password {your_token}
 
 ```
 
+Finally to push the model to DVC
 ```
 t5s push
 ```
