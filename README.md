@@ -62,7 +62,6 @@ Now to run the training pipeline we can run:
 t5s run
 ```
 
-Finally to push the model to DVC
 Before pushing make sure that the DVC remote is setup correctly:
 
 ```
