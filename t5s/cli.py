@@ -141,6 +141,7 @@ def start(arguments):
     dicts.update(data_params)
     print("Final parameters for the run are: {}".format(dicts))
 
+
 def parse_args(args):
     arguments = vars(arg_parser.parse_args(args=args or ["--help"]))
     return arguments
