@@ -65,7 +65,7 @@ parser_pull = command_subparser.add_parser(
 parser_run = command_subparser.add_parser(
     "run",
     help="run the DVC pipeline - recompute any modified outputs such as "
-    "processed data or trained models",
+         "processed data or trained models",
 )
 
 parser_visualize = command_subparser.add_parser(
