@@ -51,6 +51,7 @@ parser_start.add_argument(
 
 parser_dirs = command_subparser.add_parser(
     "dirs",
+    help="Create directories that are ignored by git but required for the project",
 )
 
 parser_push = command_subparser.add_parser(
