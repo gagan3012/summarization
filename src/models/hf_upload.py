@@ -1,5 +1,6 @@
 import shutil
 from getpass import getpass
+from os.path import join, dirname
 from pathlib import Path
 import yaml
 
@@ -20,10 +21,10 @@ def upload(model_to_upload, model_name):
     )
 
     del hf_token
-    readme_txt = f"""
-            ---
-            Summarisation model {model_name}
-            """.strip()
+    try:
+        readme_txt = open(join(dirname(__file__), "README.md"), encoding="utf8").read()
+    except Exception:
+        readme_txt = None
 
     (Path(model_repo.local_dir) / "README.md").write_text(readme_txt)
     model_to_upload.save_model(Path(model_repo.local_dir))
