@@ -13,6 +13,5 @@ if __name__ == "__main__":
     with open("data_params.yml") as f:
         params = yaml.safe_load(f)
 
-    process_data(frac=params['split'], split="train")
     process_data(frac=params['split'], split="test")
     process_data(frac=params['split'], split="validation")
