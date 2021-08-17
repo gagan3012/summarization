@@ -12,7 +12,7 @@ with open('requirements.txt') as f:
 setup(
     name='t5s',
     packages=find_packages(include=['t5s*']),
-    version='2.0.4',
+    version='2.0.5',
     description="T5 Summarisation Using Pytorch Lightning",
     license='MIT License',
     classifiers=[

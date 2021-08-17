@@ -22,16 +22,16 @@ parser_start.add_argument(
     "-d",
     "--dataset",
     default="cnn_dailymail",
-    help="Enter the name of the dataset to be used",type=str
+    help="Enter the name of the dataset to be used", type=str
 )
 
-parser_start.add_argument("-s", "--split", default=0.001, help="Enter the split required",type=float)
+parser_start.add_argument("-s", "--split", default=0.001, help="Enter the split required", type=float)
 
 parser_start.add_argument(
     "-n", "--name", default="summarsiation", help="Enter the name of the model"
 )
 parser_start.add_argument(
-    "-mt", "--model_type", default="t5", help="Enter the model type",type=str
+    "-mt", "--model_type", default="t5", help="Enter the model type", type=str
 )
 parser_start.add_argument(
     "-m",
@@ -113,25 +113,25 @@ class Run(object):
         elif arguments["command"] == "start":
             os.chdir("./summarization/")
             print("""
-            usage: t5s start [-h] [-d DATASET] [-s SPLIT] [-n NAME] [-mt MODEL_TYPE]
+usage: t5s start [-h] [-d DATASET] [-s SPLIT] [-n NAME] [-mt MODEL_TYPE]
                  [-m MODEL_NAME] [-e EPOCHS] [-lr LEARNING_RATE]
                  [-b BATCH_SIZE]
                  
-  -h, --help            show this help message and exit
-  -d DATASET, --dataset DATASET
+-h, --help            show this help message and exit
+-d DATASET, --dataset DATASET
                         Enter the name of the dataset to be used
-  -s SPLIT, --split SPLIT
+-s SPLIT, --split SPLIT
                         Enter the split required
-  -n NAME, --name NAME  Enter the name of the model
-  -mt MODEL_TYPE, --model_type MODEL_TYPE
+-n NAME, --name NAME  Enter the name of the model
+-mt MODEL_TYPE, --model_type MODEL_TYPE
                         Enter the model type
-  -m MODEL_NAME, --model_name MODEL_NAME
+-m MODEL_NAME, --model_name MODEL_NAME
                         Enter the model to be used eg t5-base
-  -e EPOCHS, --epochs EPOCHS
+-e EPOCHS, --epochs EPOCHS
                         Enter the number of epochs
-  -lr LEARNING_RATE, --learning-rate LEARNING_RATE
+-lr LEARNING_RATE, --learning-rate LEARNING_RATE
                         Enter the number of epochs
-  -b BATCH_SIZE, --batch-size BATCH_SIZE
+-b BATCH_SIZE, --batch-size BATCH_SIZE
                         Enter the number of batches
             """)
             start(arguments=arguments)
