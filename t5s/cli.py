@@ -165,6 +165,7 @@ def start(arguments):
     dicts.update(newdct)
     dicts.update(data_params)
     print("Final parameters for the run are: {}".format(dicts))
+    pprint.pprint("Final parameters for the run are: {}".format(dicts))
 
 
 def parse_args(args):
