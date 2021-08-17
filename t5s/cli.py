@@ -23,10 +23,13 @@ parser_start.add_argument(
     "-d",
     "--dataset",
     default="cnn_dailymail",
-    help="Enter the name of the dataset to be used", type=str
+    help="Enter the name of the dataset to be used",
+    type=str,
 )
 
-parser_start.add_argument("-s", "--split", default=0.001, help="Enter the split required", type=float)
+parser_start.add_argument(
+    "-s", "--split", default=0.001, help="Enter the split required", type=float
+)
 
 parser_start.add_argument(
     "-n", "--name", default="summarsiation", help="Enter the name of the model"
@@ -39,13 +42,17 @@ parser_start.add_argument(
     "--model_name",
     default="t5-base",
     help="Enter the model to be used eg t5-base",
-    type=str
+    type=str,
 )
 parser_start.add_argument(
     "-e", "--epochs", default=5, help="Enter the number of epochs", type=int
 )
 parser_start.add_argument(
-    "-lr", "--learning-rate", default=0.0001, help="Enter the number of epochs", type=float
+    "-lr",
+    "--learning-rate",
+    default=0.0001,
+    help="Enter the number of epochs",
+    type=float,
 )
 parser_start.add_argument(
     "-b", "--batch-size", default=2, help="Enter the number of batches", type=int
@@ -67,7 +74,7 @@ parser_pull = command_subparser.add_parser(
 parser_run = command_subparser.add_parser(
     "run",
     help="run the DVC pipeline - recompute any modified outputs such as "
-         "processed data or trained models",
+    "processed data or trained models",
 )
 
 parser_visualize = command_subparser.add_parser(
@@ -82,6 +89,13 @@ parser_lint = command_subparser.add_parser("lint", help=" Lint using flake8")
 
 parser_clone = command_subparser.add_parser(
     "clone", help="Clone the T5 summarisation repo"
+)
+parser_clone.add_argument(
+    "-u",
+    "--username",
+    help="Enter the your DAGsHub username that you have forked the main repo with",
+    default="gagan3012",
+    type=str,
 )
 
 
@@ -104,8 +118,9 @@ class Run(object):
             "lint",
         ]
         if arguments["command"] == "clone":
+            username = arguments["username"]
             list_files = subprocess.run(
-                ["git", "clone", "https://dagshub.com/gagan3012/summarization.git"]
+                ["git", "clone", f"https://dagshub.com/{username}/summarization.git"]
             )
             os.chdir("./summarization/")
             retval = os.getcwd()
@@ -113,11 +128,11 @@ class Run(object):
             return list_files.returncode
         elif arguments["command"] == "start":
             os.chdir("./summarization/")
-            print("""
+            print(
+                """
 usage: t5s start [-h] [-d DATASET] [-s SPLIT] [-n NAME] [-mt MODEL_TYPE]
                  [-m MODEL_NAME] [-e EPOCHS] [-lr LEARNING_RATE]
-                 [-b BATCH_SIZE]
-                 
+                 [-b BATCH_SIZE]                 
 -h, --help            show this help message and exit
 -d DATASET, --dataset DATASET
                         Enter the name of the dataset to be used
@@ -134,7 +149,8 @@ usage: t5s start [-h] [-d DATASET] [-s SPLIT] [-n NAME] [-mt MODEL_TYPE]
                         Enter the number of epochs
 -b BATCH_SIZE, --batch-size BATCH_SIZE
                         Enter the number of batches
-            """)
+            """
+            )
             start(arguments=arguments)
         elif arguments["command"] in cmd:
             os.chdir("./summarization/")
