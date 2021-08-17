@@ -3,6 +3,7 @@ import yaml
 
 from src.models.model import Summarization
 
+
 def predict_model(text: str):
     """
     Predict the summary of the given text.
@@ -14,6 +15,7 @@ def predict_model(text: str):
     model.load_model(model_type=params["model_type"], model_dir="gagan3012/summarsiation")
     pre_summary = model.predict(text)
     return pre_summary
+
 
 def visualize():
     st.write("# Summarization  UI")
