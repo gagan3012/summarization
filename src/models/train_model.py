@@ -15,8 +15,8 @@ def train_model():
     train_df = pd.read_csv("data/processed/train.csv")
     eval_df = pd.read_csv("data/processed/validation.csv")
 
-    train_df = train_df.sample(random_state=1)
-    eval_df = eval_df.sample(random_state=1)
+    # train_df = train_df.sample(random_state=1)
+    # eval_df = eval_df.sample(random_state=1)
 
     model = Summarization()
     model.from_pretrained(
@@ -24,7 +24,7 @@ def train_model():
     )
 
     print(train_df.shape, eval_df.shape)
-    
+
     model.train(
         train_df=train_df,
         eval_df=eval_df,
