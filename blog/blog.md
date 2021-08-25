@@ -9,7 +9,6 @@ pip install t5s
 ```
 
 
-Once we download the package we can use the training pipeline. Before we describe how the package works we will explain what each stage of the pipeline is.
 
 ![image](https://user-images.githubusercontent.com/49101362/129772732-438e700b-b0f0-4a74-832e-27628d8c2da3.png)
 
