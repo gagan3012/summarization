@@ -2,12 +2,12 @@
 ## TL;DR
 We built a machine learning model that summarizes text. It only makes sense that we’ll let it summarize what this article is about.
 ## Model generated summary of the Article:
+
 Deep Learning technology can be used for learning tasks related to language, such as translation, classification, entity recognition or in this case, summarization . We wanted to build a project that could be easily reproduced and customized, to make it usable for the community . The package for text summarization is available to be downloaded as a package . Using DAGHub allows us to track and manage metrics for all the different runs..In a sense, this is a template for more summarization projects. The code for training the model has been written in pytorch lightning. The script allows us to train T5, mT5 and byT5 models as well.
----
 
 To add to this auto-summary – Two additional interesting aspects of the project are:
-It is easily customizable – changing datasets and model architectures is made to be easy, which means that you can easily adapt it to your needs.
-It integrates many of the best open source tools all in one – DVC, MLflow, HuggingFace, and Streamlit. This is an example of an end to end open source stack and workflow, which means it can be applicable to many other ML projects.
+- It is easily customizable – changing datasets and model architectures is made to be easy, which means that you can easily adapt it to your needs.
+- It integrates many of the best open source tools all in one – DVC, MLflow, HuggingFace, and Streamlit. This is an example of an end to end open source stack and workflow, which means it can be applicable to many other ML projects.
 # Task Introduction – Machine Summarization
 Natural Language Processing is one of the key areas where Machine Learning has been very effective. In fact, whereas NLP traditionally required a lot of human intervention, today, this is no longer true. Specifically, Deep Learning technology can be used for learning tasks related to language, such as translation, classification, entity recognition or in this case, summarization.
 
