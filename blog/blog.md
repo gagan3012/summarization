@@ -1,7 +1,6 @@
 Natural Language Processing is one of the key areas where Machine Learning has been very effective. In fact, whereas NLP traditionally required a lot of human intervention, today, this is no longer true. Specifically, Deep Learning technology can be used for learning tasks related to language, such as translation, classification, entity recognition or in this case, summarization.
 
 
-There are important applications for text summarization in various NLP related tasks such as text classification, question answering, legal texts summarization, news summarization, and headline generation. Moreover, the generation of summaries can be integrated into these systems as an intermediate stage which helps to reduce the length of the document.
 
 Our goal here was to create a reproducible pipeline for Text summarisation. We wanted to train the model, visualise the results and upload the model. This project is built using the DVC cookiecutter template provided by DAGsHub. 
 
