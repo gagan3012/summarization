@@ -1,14 +1,5 @@
-Context:
-
-Summary
-Intro to problem
-Solution 
-Pipeline
-Challenges
-Usage
-
-Machine Summarization – An Open Data Science Project 
-# TL;DR
+# Machine Summarization – An Open Data Science Project 
+## TL;DR
 We built a machine learning model that summarizes text. It only makes sense that we’ll let it summarize what this article is about.
 ## Model generated summary of the Article:
 Deep Learning technology can be used for learning tasks related to language, such as translation, classification, entity recognition or in this case, summarization . We wanted to build a project that could be easily reproduced and customized, to make it usable for the community . The package for text summarization is available to be downloaded as a package . Using DAGHub allows us to track and manage metrics for all the different runs..In a sense, this is a template for more summarization projects. The code for training the model has been written in pytorch lightning. The script allows us to train T5, mT5 and byT5 models as well.
@@ -26,7 +17,7 @@ Borrowing the definition of the task from this excellent article by Luís Gonça
 > There are important applications for text summarization in various NLP related tasks such as text classification, question answering, legal texts summarization, news summarization, and headline generation. Moreover, the generation of summaries can be integrated into these systems as an intermediate stage which helps to reduce the length of the document.
 
 
-# The Challenge – Making it easy to modify datasets and models
+## The Challenge – Making it easy to modify datasets and models
 Typically when we are building or fine tuning a model for summarisation we need to load the model, download the data, write a fine tuning script and then we need to define our pipeline. The whole process is very intensive and often results are not reproducible by others using the pipeline. In a traditional git repository it is hard to keep track of large datasets and models which makes it even harder to track models. 
 
 There was not a ready to use pipeline that could be easily modified with different datasets to train the same model (or the ability to customize the model, for that matter). Each time we had to change a dataset or use a different split of the dataset we would have to re-run all the steps of the pipeline which would further take up resources on the system. 
@@ -44,7 +35,7 @@ pip install t5s
 Once we download the package we can use the training pipeline. But before we get into how the package works, let’s start by explaining what each stage of the pipeline does.
 
 
-# The Pipeline – Providing structure to our project
+## The Pipeline – Providing structure to our project
 The first stage of our pipeline is to download data from the Hugging Face hub. Here for training we have used the `CNN_dailymail` dataset. In order to download the dataset we use the parameter files called `data_params.yml` which defines the datasets and the split that we would like to train our data on. We run the `download_data` stage which downloads the data and then stores it as raw data which we will then process. 
 
 Once the raw data is saved we move on to processing the data using our script to process the raw data. We change the column names and modify the data to work with our training script. Now the data is also split into three different files: `train.csv`, `validation.csv` and `test.csv` which represent training, validation and test sets, respectively. 
@@ -62,7 +53,7 @@ We can also visualise and test the results of the model using a streamlit app wh
 One of the biggest challenges that we faced in this project was to build a data pipeline that was reproducible and was easy to evaluate. Using DAGsHub has made this possible. DAGsHub allows us to track and manage metrics for all the different runs and allows us to have a reproducible pipeline. Logging metrics to DAGsHub is as easy as committing files to a git repo one push and we are ready to analyse the run. 
 
 In order to use the DAGsHub logger with pytorch lightning we had to make a few changes in the logging system in our code. Since pytorch lightning is a live project and it’s always improving we need to find better ways to have real time logging. We tried using multiple logging services that can be used in the pipeline on demand too. We have implemented Weights and Biases, tensorboard and MLFlow logging. We found that MLFlow is the best logging method here because of its seamless integration with DAGsHub. 
-# The `t5s` package – wrapping it up nicely
+## The `t5s` package – wrapping it up nicely
 In order to run the pipeline we have setup a CLI application that will help us run the pipeline 
 
 To install the pipeline we need to first install t5s using:
@@ -128,5 +119,5 @@ Finally, if we would like to test the model and visualise the results we can run
 t5s visualize
 ```
 This will open our Streamlit app, which in turn will let us try out our model with some custom examples. 
-# Summary
+## Summary
 In conclusion, we have built a machine summarisation pipeline that is reproducible and reusable. This project is unique because it combines a lot of open source tools like DAGsHub, DVC, PyTorch Lightning, HuggingFace Hub and Streamlit to build the model. We would love for you to try out our Machine Summarisation project yourself, and to give us feedback. It would really help us to prioritize future features, so please vote on or create issues! If you'd like to take a more active part, we have some good first issues ideas that you can start with. We'll be happy to provide guidance on the best way to do so. 
