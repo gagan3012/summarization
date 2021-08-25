@@ -3,7 +3,6 @@ Natural Language Processing is one of the key areas where Machine Learning has b
 
 
 
-The package for text summarization is available to be downloaded as package 
 
 ```
 pip install t5s
