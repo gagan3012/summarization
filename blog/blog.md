@@ -8,7 +8,6 @@ Natural Language Processing is one of the key areas where Machine Learning has b
 pip install t5s
 ```
 
-## Pipeline
 
 Once we download the package we can use the training pipeline. Before we describe how the package works we will explain what each stage of the pipeline is.
 
