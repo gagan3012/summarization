@@ -2,7 +2,6 @@ Natural Language Processing is one of the key areas where Machine Learning has b
 
 
 
-Our goal here was to create a reproducible pipeline for Text summarisation. We wanted to train the model, visualise the results and upload the model. This project is built using the DVC cookiecutter template provided by DAGsHub. 
 
 The package for text summarization is available to be downloaded as package 
 
